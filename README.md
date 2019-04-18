@@ -1,5 +1,5 @@
 # kotlin-mvvm
-MVVM(Model View View Model) sample in Kotlin using the components ViewModel, LiveData and Retrofit library
+MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData and Retrofit library
 
 ## MVVM Pattern (Model View ViewModel)
 
