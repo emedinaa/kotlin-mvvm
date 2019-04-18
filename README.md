@@ -4,9 +4,7 @@ MVVM(Model View View Model) sample in Kotlin using the components ViewModel, Liv
 
 ## Demo
 
-<img src="./screenshot.png" height="480">
-
-<img src="./kotlinmvvm720.gif?raw=true" height="480">
+<img src="./screenshot.png" height="480"> <img src="./kotlinmvvm720.gif?raw=true" height="480">
 
 ## Libraries
 
