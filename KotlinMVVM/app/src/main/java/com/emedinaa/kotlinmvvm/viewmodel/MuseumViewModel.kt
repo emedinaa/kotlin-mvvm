@@ -16,18 +16,34 @@ class MuseumViewModel:ViewModel() {
     val museums: LiveData<List<Museum>>
     get() = _museums
 
+    private val _isViewLoading=MutableLiveData<Boolean>()
+    val isViewLoading:LiveData<Boolean>
+    get() = _isViewLoading
 
+    private val _onMessageError=MutableLiveData<Any>()
+    val onMessageError:LiveData<Any>
+    get() = _onMessageError
+
+
+    /*
+    If you require that the data be loaded only once, you can consider calling the method
+    "loadMuseums()" on constructor. Also, if you rotate the screen, the service will not be called.
+     */
     init {
         loadMuseums()
     }
 
     fun loadMuseums(){
+        _isViewLoading.value=true
         repository.retrieveMuseums(object:OperationCallback{
-            override fun onError(obj: Any?) {}
+            override fun onError(obj: Any?) {
+                _isViewLoading.value=false
+                _onMessageError.value= obj
+            }
 
             override fun onSuccess(obj: Any?) {
                 if(obj is List<*>){
-                    Log.v("CONSOLE", "obj ${obj}")
+                    _isViewLoading.value=false
                     _museums.value= obj as List<Museum>
                 }
             }
