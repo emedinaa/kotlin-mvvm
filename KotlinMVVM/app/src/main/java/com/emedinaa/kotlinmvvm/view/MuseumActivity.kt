@@ -33,10 +33,15 @@ class MuseumActivity : AppCompatActivity() {
         adapter= MuseumAdapter(viewModel.museums.value?: emptyList())
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= adapter
+
+        Log.v("CONSOLE","savedInstanceState $savedInstanceState")
+        /*if(savedInstanceState==null){
+            viewModel.loadMuseums()
+        }*/
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadMuseums()
+        //viewModel.loadMuseums()
     }
 }

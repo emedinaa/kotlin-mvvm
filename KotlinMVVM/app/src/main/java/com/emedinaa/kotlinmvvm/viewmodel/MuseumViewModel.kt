@@ -17,6 +17,10 @@ class MuseumViewModel:ViewModel() {
     get() = _museums
 
 
+    init {
+        loadMuseums()
+    }
+
     fun loadMuseums(){
         repository.retrieveMuseums(object:OperationCallback{
             override fun onError(obj: Any?) {}
