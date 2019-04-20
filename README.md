@@ -9,7 +9,7 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
  
 ## Demo
 
-<img src="./screenshot.png" height="480"> <img src="./kotlinmvvm720.gif?raw=true" height="480">
+<img src="./screenshot.png" height="480"> <img src="./screenshot_error.png" height="480"> <img src="./kotlinmvvm720.gif?raw=true" height="480">
 
 ## Dependencies
 
