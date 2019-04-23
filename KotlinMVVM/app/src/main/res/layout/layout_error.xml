@@ -13,7 +13,7 @@ android:gravity="center">
             app:srcCompat="@drawable/ic_error"
     android:adjustViewBounds="true"/>
     <TextView
-            tools:text="Ocurrió un error"
+            tools:text="@string/an_error_occurred"
             android:textColor="@android:color/holo_red_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

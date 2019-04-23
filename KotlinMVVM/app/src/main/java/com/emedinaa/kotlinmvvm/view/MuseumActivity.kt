@@ -18,6 +18,9 @@ class MuseumActivity : AppCompatActivity() {
     private lateinit var viewModel: MuseumViewModel
     private lateinit var adapter: MuseumAdapter
 
+    companion object {
+        val TAG= "CONSOLE"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_museum)
@@ -30,7 +33,7 @@ class MuseumActivity : AppCompatActivity() {
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= adapter
 
-        Log.v("CONSOLE","savedInstanceState $savedInstanceState")
+        Log.v(TAG,"savedInstanceState $savedInstanceState")
 
         //Consider this, if you need to call the service once when activity was created.
         /*if(savedInstanceState==null){
@@ -48,28 +51,35 @@ class MuseumActivity : AppCompatActivity() {
         viewModel.museums.observe(this,renderMuseums)
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)
         viewModel.onMessageError.observe(this,onMessageErrorObserver)
+        viewModel.isEmptyList.observe(this,emptyListObserver)
     }
 
     //observers
     private val renderMuseums= Observer<List<Museum>> {
-        Log.v("CONSOLE", "data updated $it")
+        Log.v(TAG, "data updated $it")
         layoutError.visibility=View.GONE
+        layoutEmpty.visibility=View.GONE
         adapter.update(it)
     }
 
     private val isViewLoadingObserver= Observer<Boolean> {
-        Log.v("CONSOLE", "isViewLoading $it")
+        Log.v(TAG, "isViewLoading $it")
         val visibility=if(it)View.VISIBLE else View.GONE
         progressBar.visibility= visibility
     }
 
     private val onMessageErrorObserver= Observer<Any> {
-        Log.v("CONSOLE", "onMessageError $it")
+        Log.v(TAG, "onMessageError $it")
         layoutError.visibility=View.VISIBLE
+        layoutEmpty.visibility=View.GONE
         textViewError.text= "Error $it"
     }
 
-    private val emptyListObserver= Observer<Boolean> {}
+    private val emptyListObserver= Observer<Boolean> {
+        Log.v(TAG, "emptyListObserver $it")
+        layoutEmpty.visibility=View.VISIBLE
+        layoutError.visibility=View.GONE
+    }
 
     /**
      * If you require updated data, you can call the method "loadMuseum" here

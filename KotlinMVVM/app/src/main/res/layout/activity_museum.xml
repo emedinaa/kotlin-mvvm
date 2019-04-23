@@ -43,4 +43,11 @@
              android:visibility="gone"
              tools:visibility="visible"/>
 
+    <include layout="@layout/layout_empty"
+             android:id="@+id/layoutEmpty" app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintBottom_toBottomOf="parent"
+             android:visibility="gone"
+             tools:visibility="visible"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
