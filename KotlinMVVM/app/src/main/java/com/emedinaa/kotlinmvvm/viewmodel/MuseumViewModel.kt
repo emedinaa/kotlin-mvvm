@@ -32,16 +32,17 @@ class MuseumViewModel:ViewModel() {
     }
 
     fun loadMuseums(){
-        _isViewLoading.value=true
+        _isViewLoading.postValue(true)
         repository.retrieveMuseums(object:OperationCallback{
             override fun onError(obj: Any?) {
                 _isViewLoading.postValue(false)
-                _onMessageError.value= obj
+                _onMessageError.postValue( obj)
             }
 
             override fun onSuccess(obj: Any?) {
+                _isViewLoading.postValue(false)
+
                 if(obj is List<*>){
-                    _isViewLoading.postValue(false)
                     if(obj.isEmpty()){
                         _isEmptyList.postValue(true)
                     }else{
@@ -50,6 +51,5 @@ class MuseumViewModel:ViewModel() {
                 }
             }
         })
-
     }
 }
