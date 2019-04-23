@@ -14,9 +14,49 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 <img src="./kotlinmvvmscreenrotation720.gif?raw=true" height="480">
 
 
-## Update[04/23/2019]
+## Update [04/23/2019]
 
-- Remove get method
+- Replace 'value' method to 'postValue' method when is related to ui callbacks
+
+MuseumViewModel
+
+```
+  fun loadMuseums(){
+        _isViewLoading.value=true
+        repository.retrieveMuseums(object:OperationCallback{
+            override fun onError(obj: Any?) {
+                _isViewLoading.postValue(false)
+                _onMessageError.value= obj
+            }
+  ...          
+```
+
+for this
+
+```
+ fun loadMuseums(){
+        _isViewLoading.postValue(true)
+        repository.retrieveMuseums(object:OperationCallback{
+            override fun onError(obj: Any?) {
+                _isViewLoading.postValue(false)
+                _onMessageError.postValue( obj)
+            }
+
+            override fun onSuccess(obj: Any?) {
+                _isViewLoading.postValue(false)
+
+                if(obj is List<*>){
+                    if(obj.isEmpty()){
+                        _isEmptyList.postValue(true)
+                    }else{
+                        _museums.value= obj as List<Museum>
+                    }
+                }
+            }
+        })
+```
+
+- Remove 'get' method
 
 MuseumViewModel
 
