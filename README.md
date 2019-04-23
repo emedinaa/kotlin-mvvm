@@ -19,7 +19,7 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 ## Update [04/23/2019]
 
-- Replace 'value' method to 'postValue' method when is related to ui callbacks
+- Replace 'value' method with 'postValue' method when is related to ui callbacks
 
 MuseumViewModel
 
@@ -139,4 +139,4 @@ MuseumActivity
 - Android Architecture Blueprints https://github.com/googlesamples/android-architecture
 - Android Jetpack: ViewModel https://www.youtube.com/watch?v=5qlIPTDE274
 
-I appreciate any question or comment and could you give me a star if you consider useful. Also, you can put any issue at https://github.com/emedinaa/kotlin-mvvm/issues
+I appreciate any question or comment. Also, if you consider it useful , you can give me a star. Besides, you can put any issue at https://github.com/emedinaa/kotlin-mvvm/issues
