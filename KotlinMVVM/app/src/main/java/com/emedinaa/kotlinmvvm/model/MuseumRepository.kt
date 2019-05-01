@@ -8,11 +8,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MuseumRepository {
+class MuseumRepository:MuseumDataSource {
 
     private var call:Call<MuseumResponse>?=null
 
-    fun retrieveMuseums(callback:OperationCallback){
+    override fun retrieveMuseums(callback: OperationCallback) {
         call=ApiClient.build()?.museums()
         call?.enqueue(object :Callback<MuseumResponse>{
             override fun onFailure(call: Call<MuseumResponse>, t: Throwable) {
@@ -32,7 +32,7 @@ class MuseumRepository {
         })
     }
 
-    fun cancel(){
+    override fun cancel() {
         call?.let {
             it.cancel()
         }

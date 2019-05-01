@@ -7,9 +7,7 @@ import com.emedinaa.kotlinmvvm.data.OperationCallback
 import com.emedinaa.kotlinmvvm.model.Museum
 import com.emedinaa.kotlinmvvm.model.MuseumRepository
 
-class MuseumViewModel:ViewModel() {
-
-    private val repository= MuseumRepository()
+class MuseumViewModel(private val repository: MuseumRepository):ViewModel() {
 
     private val _museums = MutableLiveData<List<Museum>>().apply { value = emptyList() }
     val museums: LiveData<List<Museum>> = _museums
@@ -52,4 +50,5 @@ class MuseumViewModel:ViewModel() {
             }
         })
     }
+
 }
