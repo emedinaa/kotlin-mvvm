@@ -14,10 +14,10 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 <img src="assets/kotlinmvvm720.gif?raw=true" height="480"> 
 
 ## Architecture
-<img src="assets/architecture.png" height="520">
+<img src="assets/architecture.png" height="540">
 
 ## Flow
-<img src="assets/MVVMFlow.png" height="480">
+<img src="assets/MVVMFlow.png" height="540">
  
 ## Screenshots
 
