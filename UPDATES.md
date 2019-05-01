@@ -1,7 +1,7 @@
 
-#Updates
+# Updates
 
-## ViewModel & Repository[05/01/2019]
+### ViewModel & Repository [05/01/2019]
 
 - Added DataSource and Injection components
 
@@ -68,13 +68,16 @@ class MuseumActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel(){
+    
         viewModel =     ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
+        
         ...
+        
         }
 }
 ```
 
-## ViewModel[04/23/2019]
+### ViewModel [04/23/2019]
 
 - Replace 'value' method with 'postValue' method when is related to ui callbacks
 
