@@ -23,15 +23,17 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 <img src="assets/screenshot.png" height="480"> <img src="assets/screenshot_error.png" height="480"> <img src="assets/screenshot_empty.png" height="480">
 
-## Updates
+## Updates [May 2019]
 
 - Updates and improvements about this repository. [Link](https://github.com/emedinaa/kotlin-mvvm/blob/master/UPDATES.md)
 
 ## Dependencies
 
-- Retrofit https://square.github.io/retrofit/
-- OkHttp https://square.github.io/okhttp/
-- Glide https://github.com/bumptech/glide
+- [Retrofit 2 '2.3.0'](https://square.github.io/retrofit/)
+- [OkHttp 3 '3.4.1'](https://square.github.io/okhttp/)
+- [Glide '4.9.0'](https://github.com/bumptech/glide)
+- [AndroidX '1.0.0'](https://mvnrepository.com/artifact/androidx)
+- [Arch Lifecycle '2.0.0'](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 
 ## References
 
