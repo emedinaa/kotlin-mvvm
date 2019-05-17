@@ -21,8 +21,9 @@ class MuseumActivity : AppCompatActivity() {
     private lateinit var adapter: MuseumAdapter
 
     companion object {
-        val TAG= "CONSOLE"
+        const val TAG= "CONSOLE"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_museum)
@@ -54,6 +55,7 @@ class MuseumActivity : AppCompatActivity() {
                 adapter.update(it)
             })*/
         viewModel.museums.observe(this,renderMuseums)
+
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)
         viewModel.onMessageError.observe(this,onMessageErrorObserver)
         viewModel.isEmptyList.observe(this,emptyListObserver)
