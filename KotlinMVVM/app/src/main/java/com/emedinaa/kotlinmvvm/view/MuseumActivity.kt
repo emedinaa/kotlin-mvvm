@@ -24,36 +24,44 @@ class MuseumActivity : AppCompatActivity() {
         const val TAG= "CONSOLE"
     }
 
+    /**
+     //Consider this, if you need to call the service once when activity was created.
+        Log.v(TAG,"savedInstanceState $savedInstanceState")
+        if(savedInstanceState==null){
+            viewModel.loadMuseums()
+        }
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_museum)
 
-        //viewmodel
-        setUpViewModel()
+        setupViewModel()
+        setupUI()
+    }
 
-        //ui
+    //ui
+    private fun setupUI(){
         adapter= MuseumAdapter(viewModel.museums.value?: emptyList())
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= adapter
-
-        Log.v(TAG,"savedInstanceState $savedInstanceState")
-
-        //Consider this, if you need to call the service once when activity was created.
-        /*if(savedInstanceState==null){
-            viewModel.loadMuseums()
-        }*/
     }
 
-    private fun setUpViewModel(){
-        //viewModel = ViewModelProviders.of(this).get(MuseumViewModel::class.java)
+    //viewmodel
+    /**
+        //Consider this if ViewModel class don't require parameters.
+        viewModel = ViewModelProviders.of(this).get(MuseumViewModel::class.java)
 
         //if you require any parameters to  the ViewModel consider use a ViewModel Factory
         viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
-        /*viewModel.museums.observe(this,
-            Observer<List<Museum>> {
-                Log.v("CONSOLE", "data updated $it")
-                adapter.update(it)
-            })*/
+
+        //Anonymous observer implementation
+        viewModel.museums.observe(this,Observer<List<Museum>> {
+            Log.v("CONSOLE", "data updated $it")
+            adapter.update(it)
+        })
+     */
+    private fun setupViewModel(){
+        viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
         viewModel.museums.observe(this,renderMuseums)
 
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)
@@ -88,11 +96,11 @@ class MuseumActivity : AppCompatActivity() {
         layoutError.visibility=View.GONE
     }
 
-    /**
-     * If you require updated data, you can call the method "loadMuseum" here
-     */
-    override fun onResume() {
+
+     //If you require updated data, you can call the method "loadMuseum" here
+     override fun onResume() {
         super.onResume()
-        //viewModel.loadMuseums()
-    }
+        viewModel.loadMuseums()
+     }
+
 }

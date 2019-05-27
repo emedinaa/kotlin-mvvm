@@ -33,9 +33,14 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "androidx.cardview:cardview:$cardViewVersion"
+
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "android.arch.core:core-testing:$archTestingVersion"
+
     androidTestImplementation "androidx.test:runner:$runnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
@@ -44,6 +49,5 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.gson"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3"
-
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
 }

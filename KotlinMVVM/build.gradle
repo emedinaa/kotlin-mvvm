@@ -45,9 +45,12 @@ ext {
     rulesVersion = '1.0.1'
     espressoVersion = '3.1.1'
     junitVersion = '4.12'
+    mockitoVersion= '2.27.0' //https://site.mockito.org/
+    archTestingVersion = '1.1.1'
 
     gsonVersion='2.8.0'
     retrofit2='2.3.0'
     gson='2.3.0'
     okhttp3='3.4.1'
+    glideVersion='4.9.0'
 }

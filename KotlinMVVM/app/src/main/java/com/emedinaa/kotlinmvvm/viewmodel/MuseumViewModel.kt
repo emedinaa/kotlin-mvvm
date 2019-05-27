@@ -26,7 +26,7 @@ class MuseumViewModel(private val repository: MuseumDataSource):ViewModel() {
     "loadMuseums()" on constructor. Also, if you rotate the screen, the service will not be called.
      */
     init {
-        loadMuseums()
+        //loadMuseums()
     }
 
     fun loadMuseums(){
@@ -40,7 +40,7 @@ class MuseumViewModel(private val repository: MuseumDataSource):ViewModel() {
             override fun onSuccess(obj: Any?) {
                 _isViewLoading.postValue(false)
 
-                if(obj is List<*>){
+                if(obj!=null && obj is List<*>){
                     if(obj.isEmpty()){
                         _isEmptyList.postValue(true)
                     }else{

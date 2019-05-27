@@ -5,7 +5,8 @@ import com.emedinaa.kotlinmvvm.model.MuseumRepository
 
 object Injection {
 
+    //MuseumRepository could be a singleton
     fun providerRepository():MuseumDataSource{
-        return MuseumRepository()//could be a singleton
+        return MuseumRepository()
     }
 }
