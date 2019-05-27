@@ -25,6 +25,10 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 ## Updates [May 2019]
 
+- Added Unit Testing with Mockito (27th May) [Link](https://github.com/emedinaa/kotlin-mvvm/commit/92d9e5a659c21178364d0b51e904fd126b0b6204)
+
+- Fix load images android P by Carlos Ugaz [carlosgub](https://github.com/carlosgub) [Link](https://github.com/emedinaa/kotlin-mvvm/pull/1)
+
 - Updates and improvements about this repository. [Link](https://github.com/emedinaa/kotlin-mvvm/blob/master/UPDATES.md)
 
 ## Dependencies
@@ -34,6 +38,8 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 - Glide [version: '4.9.0'](https://github.com/bumptech/glide)
 - AndroidX [version: '1.0.0'](https://mvnrepository.com/artifact/androidx)
 - Arch Lifecycle [version: '2.0.0'](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+- Mockito [version: '2.27.0'](https://site.mockito.org/)
+- Arch Testing [version: '1.1.1'](https://mvnrepository.com/artifact/android.arch.core/core-testing?repo=google)
 
 ## References
 
@@ -41,5 +47,8 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 - LiveData https://developer.android.com/topic/libraries/architecture/livedata
 - Android Architecture Blueprints https://github.com/googlesamples/android-architecture
 - Android Jetpack: ViewModel https://www.youtube.com/watch?v=5qlIPTDE274
+- Mockito : https://site.mockito.org/
+- Unit Testing + Mockito + Kotlin + Architecture components https://medium.com/@marco_cattaneo/unit-testing-with-mockito-on-kotlin-android-project-with-architecture-components-2059eb637912
+- Junit + LiveData https://jeroenmols.com/blog/2019/01/17/livedatajunit5/
 
 I appreciate any question or comment. Also, if you consider it useful , you can give me a star. Besides, you can put any issue at https://github.com/emedinaa/kotlin-mvvm/issues
