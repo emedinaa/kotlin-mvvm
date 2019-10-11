@@ -50,4 +50,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.gson"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+
+    //implementation "org.koin:koin-android:$rootProject.koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$rootProject.koinVersion"
+
+    testImplementation "org.koin:koin-test:$rootProject.koinVersion"
+    androidTestImplementation "org.koin:koin-test:$rootProject.koinVersion"
 }
