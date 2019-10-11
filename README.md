@@ -4,7 +4,7 @@
 
 MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData , the libraries  Retrofit, Koin and Mockito for testing.
 
-<img src="assets/screnshot_tests_koin.png">
+<img src="assets/screenshot_tests_koin.png">
 
 ## Dependencies
 
