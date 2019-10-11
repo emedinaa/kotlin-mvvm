@@ -2,7 +2,7 @@
 
 [![Kotlin](https://img.shields.io/badge/kotlin-1.3.21-blue.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-3.3.2-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin) [![Mockito](https://img.shields.io/badge/mockito-2.27.0-orange.svg)](https://site.mockito.org/)
 
-MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData and Retrofit library
+MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData, the libraries Retrofit, Glide and Mockito for testing.
 
 ## MVVM Pattern (Model View ViewModel)
  <img src="assets/AndroidMVVM.png">
@@ -23,11 +23,13 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 <img src="assets/screenshot.png" height="480"> <img src="assets/screenshot_error.png" height="480"> <img src="assets/screenshot_empty.png" height="480">
 
-## Slide
+## Slides
 
 Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpDKzO--uA-4b6LUr8g/edit?usp=sharing
 
-## Updates [May 2019]
+## Updates [October 2019]
+
+- Added Koin, dependency injection framework written in Kotlin. Included integration with Mockito for testing (11th Oct) [branch koin](https://github.com/emedinaa/kotlin-mvvm/tree/koin)
 
 - Added Unit Testing with Mockito (27th May) [Link](https://github.com/emedinaa/kotlin-mvvm/commit/92d9e5a659c21178364d0b51e904fd126b0b6204)
 
