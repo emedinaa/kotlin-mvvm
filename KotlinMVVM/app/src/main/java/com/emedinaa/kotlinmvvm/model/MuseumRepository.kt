@@ -1,22 +1,30 @@
 package com.emedinaa.kotlinmvvm.model
 
-import android.util.Log
 import com.emedinaa.kotlinmvvm.data.ApiClient
-import com.emedinaa.kotlinmvvm.data.MuseumResponse
-import com.emedinaa.kotlinmvvm.data.OperationCallback
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
-const val TAG="CONSOLE"
+import com.emedinaa.kotlinmvvm.data.OperationResult
 
 class MuseumRepository:MuseumDataSource {
 
-    private var call:Call<MuseumResponse>?=null
+    override suspend fun retrieveMuseums():OperationResult<Museum> {
+        val response = ApiClient.build()?.museums()
 
-    override fun retrieveMuseums(callback: OperationCallback) {
-        call=ApiClient.build()?.museums()
-        call?.enqueue(object :Callback<MuseumResponse>{
+        try {
+            response?.let {
+                return if(it.isSuccessful && it.body()!=null){
+                    val data = it.body()?.data
+                    OperationResult.Success(data)
+                }else{
+                    val message = it.body()?.msg
+                    OperationResult.Error(Exception(message))
+                }
+            }?:run{
+                return OperationResult.Error(Exception("Ocurrió un error"))
+            }
+        }catch (e:Exception){
+            return OperationResult.Error(e)
+        }
+
+        /*call?.enqueue(object :Callback<MuseumResponse>{
             override fun onFailure(call: Call<MuseumResponse>, t: Throwable) {
                 callback.onError(t.message)
             }
@@ -31,12 +39,7 @@ class MuseumRepository:MuseumDataSource {
                     }
                 }
             }
-        })
+        })*/
     }
 
-    override fun cancel() {
-        call?.let {
-            it.cancel()
-        }
-    }
 }

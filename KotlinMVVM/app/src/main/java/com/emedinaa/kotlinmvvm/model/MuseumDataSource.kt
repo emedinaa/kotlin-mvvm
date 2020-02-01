@@ -1,9 +1,7 @@
 package com.emedinaa.kotlinmvvm.model
 
-import com.emedinaa.kotlinmvvm.data.OperationCallback
+import com.emedinaa.kotlinmvvm.data.OperationResult
 
 interface MuseumDataSource {
-
-    fun retrieveMuseums(callback: OperationCallback)
-    fun cancel()
+    suspend fun retrieveMuseums():OperationResult<Museum>
 }

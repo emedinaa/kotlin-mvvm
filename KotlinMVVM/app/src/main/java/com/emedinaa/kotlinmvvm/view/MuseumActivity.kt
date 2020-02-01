@@ -100,7 +100,7 @@ class MuseumActivity : AppCompatActivity() {
      //If you require updated data, you can call the method "loadMuseum" here
      override fun onResume() {
         super.onResume()
-        viewModel.loadMuseums()
+        //viewModel.refresh()
      }
 
 }

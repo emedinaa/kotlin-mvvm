@@ -43,11 +43,17 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtxVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelKtxVersion"
+    //implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleKtxVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
 
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2"
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.gson"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3"
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$gson"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 }
