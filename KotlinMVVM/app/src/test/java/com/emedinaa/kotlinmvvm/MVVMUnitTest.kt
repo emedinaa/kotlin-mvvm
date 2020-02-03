@@ -4,28 +4,25 @@ import android.app.Application
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.emedinaa.kotlinmvvm.data.OperationCallback
+import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.model.Museum
-import com.emedinaa.kotlinmvvm.model.MuseumDataSource
 import com.emedinaa.kotlinmvvm.viewmodel.MuseumViewModel
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
-import org.mockito.ArgumentCaptor
-import org.mockito.Captor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.setMain
+import org.junit.*
 import org.mockito.Mock
 import org.mockito.*
 import org.mockito.Mockito.*
 
+
 class MVVMUnitTest {
 
     @Mock
-    private lateinit var repository: MuseumDataSource
-    @Mock private lateinit var context: Application
+    private lateinit var context: Application
 
-    @Captor
-    private lateinit var operationCallbackCaptor: ArgumentCaptor<OperationCallback>
 
     private lateinit var viewModel:MuseumViewModel
 
@@ -37,12 +34,12 @@ class MVVMUnitTest {
     private lateinit var museumEmptyList:List<Museum>
     private lateinit var museumList:List<Museum>
 
-    /**
-     //https://jeroenmols.com/blog/2019/01/17/livedatajunit5/
-     //Method getMainLooper in android.os.Looper not mocked
+    private val fakeMuseumRepository = FakeMuseumRepository()
+    private val fakeEmptyMuseumRepository = FakeEmptyMuseumRepository()
+    private val fakeErrorMuseumRepository = FakeErrorMuseumRepository()
 
-     java.lang.IllegalStateException: operationCallbackCaptor.capture() must not be null
-     */
+    private val testDispatcher = TestCoroutineDispatcher()
+
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
@@ -50,59 +47,73 @@ class MVVMUnitTest {
     fun setup() {
         MockitoAnnotations.initMocks(this)
         `when`<Context>(context.applicationContext).thenReturn(context)
-
-        viewModel= MuseumViewModel(repository)
+        Dispatchers.setMain(testDispatcher)
 
         mockData()
         setupObservers()
     }
 
+    @After
+    fun cleanUp() {
+        Dispatchers.resetMain()
+        testDispatcher.cleanupTestCoroutines()
+    }
+
+
     @Test
-    fun museumEmptyListRepositoryAndViewModel(){
+    fun `retrieve museums with ViewModel and Repository returns empty data`() {
+        viewModel= MuseumViewModel(fakeEmptyMuseumRepository)
+
         with(viewModel){
             loadMuseums()
             isViewLoading.observeForever(isViewLoadingObserver)
-            //onMessageError.observeForever(onMessageErrorObserver)
             isEmptyList.observeForever(emptyListObserver)
             museums.observeForever(onRenderMuseumsObserver)
         }
 
-        verify(repository, times(1)).retrieveMuseums(capture(operationCallbackCaptor))
-        operationCallbackCaptor.value.onSuccess(museumEmptyList)
-
-        Assert.assertNotNull(viewModel.isViewLoading.value)
-        //Assert.assertNotNull(viewModel.onMessageError.value) //java.lang.AssertionError
-        //Assert.assertNotNull(viewModel.isEmptyList.value)
-        Assert.assertTrue(viewModel.isEmptyList.value==true)
-        Assert.assertTrue(viewModel.museums.value?.size==0)
+        runBlockingTest {
+            val response = fakeEmptyMuseumRepository.retrieveMuseums()
+            Assert.assertTrue(response is OperationResult.Success)
+            Assert.assertNotNull(viewModel.isViewLoading.value)
+            Assert.assertTrue(viewModel.isEmptyList.value==true)
+            Assert.assertTrue(viewModel.museums.value?.size==0)
+        }
     }
 
     @Test
-    fun museumListRepositoryAndViewModel(){
-        with(viewModel){
+    fun `retrieve museums with ViewModel and Repository returns full data`() {
+        viewModel= MuseumViewModel(fakeMuseumRepository)
+
+        with(viewModel) {
             loadMuseums()
             isViewLoading.observeForever(isViewLoadingObserver)
             museums.observeForever(onRenderMuseumsObserver)
         }
 
-        verify(repository, times(1)).retrieveMuseums(capture(operationCallbackCaptor))
-        operationCallbackCaptor.value.onSuccess(museumList)
-
-        Assert.assertNotNull(viewModel.isViewLoading.value)
-        Assert.assertTrue(viewModel.museums.value?.size==3)
+        runBlockingTest {
+            val response = fakeMuseumRepository.retrieveMuseums()
+            Assert.assertTrue(response is OperationResult.Success)
+            Assert.assertNotNull(viewModel.isViewLoading.value)
+            Assert.assertTrue(viewModel.museums.value?.size==3)
+        }
     }
 
     @Test
-    fun museumFailRepositoryAndViewModel(){
-        with(viewModel){
+    fun `retrieve museums with ViewModel and Repository returns an error`() {
+        viewModel= MuseumViewModel(fakeErrorMuseumRepository)
+        with(viewModel) {
             loadMuseums()
             isViewLoading.observeForever(isViewLoadingObserver)
-            onMessageError.observeForever(onMessageErrorObserver)
+            isEmptyList.observeForever(emptyListObserver)
+            museums.observeForever(onRenderMuseumsObserver)
         }
-        verify(repository, times(1)).retrieveMuseums(capture(operationCallbackCaptor))
-        operationCallbackCaptor.value.onError("Ocurrió un error")
-        Assert.assertNotNull(viewModel.isViewLoading.value)
-        Assert.assertNotNull(viewModel.onMessageError.value)
+
+        runBlockingTest {
+            val response = fakeErrorMuseumRepository.retrieveMuseums()
+            Assert.assertTrue(response is OperationResult.Error)
+            Assert.assertNotNull(viewModel.isViewLoading.value)
+            Assert.assertNotNull(viewModel.onMessageError.value)
+        }
     }
 
     private fun setupObservers(){

@@ -8,6 +8,7 @@ import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.model.Museum
 import com.emedinaa.kotlinmvvm.model.MuseumDataSource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -29,36 +30,30 @@ class MuseumViewModel(private val repository: MuseumDataSource):ViewModel() {
     If you require that the data be loaded only once, you can consider calling the method
     "loadMuseums()" on constructor. Also, if you rotate the screen, the service will not be called.
      */
-    init {
-        loadMuseums()
+
+
+    fun cancel(){
+        viewModelScope.cancel()
     }
 
-    fun refresh(){
-        loadMuseums()
-    }
-
-    private fun loadMuseums(){
+    fun loadMuseums(){
         _isViewLoading.postValue(true)
         viewModelScope.launch {
-            var  result:OperationResult<Museum>? =null
-            withContext(Dispatchers.IO){
-                result = repository.retrieveMuseums()
+            var  result:OperationResult<Museum> = withContext(Dispatchers.IO){
+                repository.retrieveMuseums()
             }
             _isViewLoading.postValue(false)
             when(result){
                 is OperationResult.Success ->{
-                    ( result as? OperationResult.Success)?.let {
-                        if(it.data.isNullOrEmpty()){
+                    if(result.data.isNullOrEmpty()){
                             _isEmptyList.postValue(true)
-                        }else{
-                            _museums.value = it.data
-                        }
+                    }else{
+                        _museums.value = result.data
                     }
                 }
                 is OperationResult.Error ->{
-                    ( result as? OperationResult.Error)?.let {
-                        _onMessageError.postValue(it.exception)
-                    }
+                    _onMessageError.postValue(result.exception)
+
                 }
             }
         }
