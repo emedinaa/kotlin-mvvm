@@ -31,6 +31,8 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 - Added Coroutines with retrofit and sealed classes to replace callbacks. Included testing with Coroutines. [branch coroutines](https://github.com/emedinaa/kotlin-mvvm/tree/coroutines)
 
+- Added Koin, dependency injection framework written in Kotlin. Included integration with Mockito for testing (11th Oct) [branch koin](https://github.com/emedinaa/kotlin-mvvm/tree/koin)
+
 - Added Unit Testing with Mockito (27th May) [Link](https://github.com/emedinaa/kotlin-mvvm/commit/92d9e5a659c21178364d0b51e904fd126b0b6204)
 
 - Fix load images android P by Carlos Ugaz [carlosgub](https://github.com/carlosgub) [Link](https://github.com/emedinaa/kotlin-mvvm/pull/1)
