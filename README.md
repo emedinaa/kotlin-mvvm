@@ -47,10 +47,10 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 - Retrofit 2 [version: '2.3.0'](https://square.github.io/retrofit/)
 - OkHttp 3 [version: '3.4.1'](https://square.github.io/okhttp/)
 - Glide [version: '4.9.0'](https://github.com/bumptech/glide)
-- AndroidX [version: '1.0.0'](https://mvnrepository.com/artifact/androidx)
-- Arch Lifecycle [version: '2.0.0'](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+- AndroidX [version: '1.2.0'](https://mvnrepository.com/artifact/androidx)
+- Arch Lifecycle [version: '2.2.0'](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 - Mockito [version: '2.27.0'](https://site.mockito.org/)
-- Arch Testing [version: '1.1.1'](https://mvnrepository.com/artifact/android.arch.core/core-testing?repo=google)
+- Arch Testing [version: '2.1.0'](https://mvnrepository.com/artifact/android.arch.core/core-testing?repo=google)
 
 ## References
 
