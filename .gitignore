@@ -111,3 +111,5 @@ lint/tmp/
 # lint/reports/
 
 .DS_Store
+
+KotlinMVVM/.idea/codeStyles/Project.xml

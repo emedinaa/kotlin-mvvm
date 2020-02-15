@@ -23,7 +23,7 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 <img src="assets/screenshot.png" height="480"> <img src="assets/screenshot_error.png" height="480"> <img src="assets/screenshot_empty.png" height="480">
 
-<img src="assets/unit_tests.png" height="480"> 
+<img src="assets/unit_tests.png" height="196"> 
 
 ## Slides
 
@@ -31,7 +31,7 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 ## Updates [February 2020]
 
-- Dependencies versions were updated and ViewModelProviders class was removed (deprecated). [All branches](https://github.com/emedinaa/kotlin-mvvm/)
+- Dependencies versions were updated and ViewModelProviders class was removed (deprecated). [all branches](https://github.com/emedinaa/kotlin-mvvm/)
 
 - Added Coroutines with retrofit and sealed classes to replace callbacks. Included testing with Coroutines. [branch coroutines](https://github.com/emedinaa/kotlin-mvvm/tree/coroutines)
 
