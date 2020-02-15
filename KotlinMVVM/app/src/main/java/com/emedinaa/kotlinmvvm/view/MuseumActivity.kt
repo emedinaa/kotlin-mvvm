@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.di.Injection
 import com.emedinaa.kotlinmvvm.model.Museum
 import com.emedinaa.kotlinmvvm.viewmodel.MuseumViewModel
-import com.emedinaa.kotlinmvvm.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_museum.*
 import kotlinx.android.synthetic.main.layout_error.*
 
@@ -52,7 +51,8 @@ class MuseumActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MuseumViewModel::class.java)
 
         //if you require any parameters to  the ViewModel consider use a ViewModel Factory
-        viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
+        //viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
+        viewModel = ViewModelProvider(this,Injection.provideViewModelFactory()).get(MuseumViewModel::class.java)
 
         //Anonymous observer implementation
         viewModel.museums.observe(this,Observer<List<Museum>> {
@@ -61,7 +61,9 @@ class MuseumActivity : AppCompatActivity() {
         })
      */
     private fun setupViewModel(){
-        viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
+        viewModel = ViewModelProvider(this,Injection.provideViewModelFactory()).get(MuseumViewModel::class.java)
+        //viewModel = ViewModelProvider(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
+        //viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
         viewModel.museums.observe(this,renderMuseums)
 
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)
@@ -95,7 +97,6 @@ class MuseumActivity : AppCompatActivity() {
         layoutEmpty.visibility=View.VISIBLE
         layoutError.visibility=View.GONE
     }
-
 
      //If you require updated data, you can call the method "loadMuseum" here
      override fun onResume() {

@@ -35,7 +35,7 @@ class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<Museu
         notifyDataSetChanged()
     }
 
-    class MViewHolder(val view: View) : RecyclerView.ViewHolder(view){
+    class MViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val textViewName: TextView = view.findViewById(R.id.textViewName)
         val imageView: ImageView = view.findViewById(R.id.imageView)
         val textViewLink:TextView= view.findViewById(R.id.textViewLink)
