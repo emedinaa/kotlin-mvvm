@@ -25,7 +25,7 @@ class MVVMUnitTest {
     @Mock private lateinit var context: Application
 
     @Captor
-    private lateinit var operationCallbackCaptor: ArgumentCaptor<OperationCallback>
+    private lateinit var operationCallbackCaptor: ArgumentCaptor<OperationCallback<Museum>>
 
     private lateinit var viewModel:MuseumViewModel
 
@@ -58,7 +58,7 @@ class MVVMUnitTest {
     }
 
     @Test
-    fun museumEmptyListRepositoryAndViewModel(){
+    fun `retrieve museums with ViewModel and Repository returns empty data`(){
         with(viewModel){
             loadMuseums()
             isViewLoading.observeForever(isViewLoadingObserver)
@@ -78,7 +78,7 @@ class MVVMUnitTest {
     }
 
     @Test
-    fun museumListRepositoryAndViewModel(){
+    fun `retrieve museums with ViewModel and Repository returns full data`(){
         with(viewModel){
             loadMuseums()
             isViewLoading.observeForever(isViewLoadingObserver)
@@ -93,14 +93,14 @@ class MVVMUnitTest {
     }
 
     @Test
-    fun museumFailRepositoryAndViewModel(){
+    fun `retrieve museums with ViewModel and Repository returns an error`(){
         with(viewModel){
             loadMuseums()
             isViewLoading.observeForever(isViewLoadingObserver)
             onMessageError.observeForever(onMessageErrorObserver)
         }
         verify(repository, times(1)).retrieveMuseums(capture(operationCallbackCaptor))
-        operationCallbackCaptor.value.onError("Ocurrió un error")
+        operationCallbackCaptor.value.onError("An error occurred")
         Assert.assertNotNull(viewModel.isViewLoading.value)
         Assert.assertNotNull(viewModel.onMessageError.value)
     }
