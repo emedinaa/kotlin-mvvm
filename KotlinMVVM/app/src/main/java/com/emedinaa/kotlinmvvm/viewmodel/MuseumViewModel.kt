@@ -31,7 +31,6 @@ class MuseumViewModel(private val repository: MuseumDataSource):ViewModel() {
     "loadMuseums()" on constructor. Also, if you rotate the screen, the service will not be called.
      */
 
-
     fun cancel(){
         viewModelScope.cancel()
     }
