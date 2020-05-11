@@ -29,7 +29,9 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpDKzO--uA-4b6LUr8g/edit?usp=sharing
 
-## Updates [February 2020]
+## Updates [May 2020]
+
+- Added View Binding [branch viewbinding](https://github.com/emedinaa/kotlin-mvvm/tree/viewbinding)
 
 - Dependencies versions were updated and ViewModelProviders class was removed (deprecated). [all branches](https://github.com/emedinaa/kotlin-mvvm/)
 
