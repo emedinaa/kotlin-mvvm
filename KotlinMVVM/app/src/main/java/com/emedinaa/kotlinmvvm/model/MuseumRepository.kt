@@ -22,7 +22,7 @@ class MuseumRepository:MuseumDataSource {
             }
 
             override fun onResponse(call: Call<MuseumResponse>, response: Response<MuseumResponse>) {
-                response?.body()?.let {
+                response.body()?.let {
                     if(response.isSuccessful && (it.isSuccess())){
                         Log.v(TAG, "data ${it.data}")
                         callback.onSuccess(it.data)
