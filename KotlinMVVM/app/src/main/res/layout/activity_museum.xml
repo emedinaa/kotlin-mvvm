@@ -36,15 +36,19 @@
             android:layout_marginLeft="8dp" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <include layout="@layout/layout_error"
-             android:id="@+id/layoutError" app:layout_constraintStart_toStartOf="parent"
+    <include
+            android:id="@+id/layoutError"
+            layout="@layout/layout_error"
+            app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintBottom_toBottomOf="parent"
              android:visibility="gone"
              tools:visibility="visible"/>
 
-    <include layout="@layout/layout_empty"
-             android:id="@+id/layoutEmpty" app:layout_constraintStart_toStartOf="parent"
+    <include
+            android:id="@+id/layoutEmpty"
+            layout="@layout/layout_empty"
+            app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintBottom_toBottomOf="parent"
              android:visibility="gone"
