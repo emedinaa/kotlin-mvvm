@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.model.Museum
+import kotlinx.android.synthetic.main.row_museum.view.*
 
 class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<MuseumAdapter.MViewHolder>(){
 
@@ -19,11 +20,8 @@ class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<Museu
     }
 
     override fun onBindViewHolder(vh: MViewHolder, position: Int) {
-        val museum= museums[position]
-
         //render
-        vh.textViewName.text= museum.name
-        Glide.with(vh.imageView.context).load(museum.photo).into(vh.imageView)
+        vh.bind(museums[position])
     }
 
     override fun getItemCount(): Int {
@@ -35,9 +33,13 @@ class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<Museu
         notifyDataSetChanged()
     }
 
-    class MViewHolder(val view: View) : RecyclerView.ViewHolder(view){
-        val textViewName: TextView = view.findViewById(R.id.textViewName)
-        val imageView: ImageView = view.findViewById(R.id.imageView)
-        val textViewLink:TextView= view.findViewById(R.id.textViewLink)
+    class MViewHolder(view: View) : RecyclerView.ViewHolder(view){
+        private val textViewName:TextView = view.textViewName
+        private val imageView:ImageView = view.imageView
+
+        fun bind(museum:Museum){
+            textViewName.text = museum.name
+            Glide.with(imageView.context).load(museum.photo).into(imageView)
+        }
     }
 }
