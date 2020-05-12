@@ -31,6 +31,8 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 ## Updates [May 2020]
 
+- Room [branch room](https://github.com/emedinaa/kotlin-mvvm/tree/room)
+
 - Added View Binding [branch viewbinding](https://github.com/emedinaa/kotlin-mvvm/tree/viewbinding)
 
 - Dependencies versions were updated and ViewModelProviders class was removed (deprecated). [all branches](https://github.com/emedinaa/kotlin-mvvm/)
