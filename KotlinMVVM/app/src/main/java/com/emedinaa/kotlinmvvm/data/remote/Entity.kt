@@ -1,4 +1,4 @@
-package com.emedinaa.kotlinmvvm.data
+package com.emedinaa.kotlinmvvm.data.remote
 
 import com.emedinaa.kotlinmvvm.model.Museum
 

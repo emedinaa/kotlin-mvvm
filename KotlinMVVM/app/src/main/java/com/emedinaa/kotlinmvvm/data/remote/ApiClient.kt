@@ -1,8 +1,7 @@
-package com.emedinaa.kotlinmvvm.data
+package com.emedinaa.kotlinmvvm.data.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,9 +12,9 @@ object ApiClient {
     //https://obscure-earth-55790.herokuapp.com/api/museums
     private val API_BASE_URL = "https://obscure-earth-55790.herokuapp.com"
 
-    private var servicesApiInterface:ServicesApiInterface?=null
+    private var servicesApiInterface: ServicesApiInterface?=null
 
-    fun build():ServicesApiInterface?{
+    fun build(): ServicesApiInterface?{
         var builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

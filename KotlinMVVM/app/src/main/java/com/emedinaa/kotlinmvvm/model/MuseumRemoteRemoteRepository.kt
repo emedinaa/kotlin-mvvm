@@ -1,14 +1,14 @@
 package com.emedinaa.kotlinmvvm.model
 
-import com.emedinaa.kotlinmvvm.data.ApiClient
+import com.emedinaa.kotlinmvvm.data.remote.ApiClient
 import com.emedinaa.kotlinmvvm.data.OperationResult
+import com.emedinaa.kotlinmvvm.data.remote.MuseumRemoteDataSource
 
-class MuseumRepository:MuseumDataSource {
+class MuseumRemoteRemoteRepository: MuseumRemoteDataSource {
 
     override suspend fun retrieveMuseums():OperationResult<Museum> {
-        val response = ApiClient.build()?.museums()
-
         try {
+            val response = ApiClient.build()?.museums()
             response?.let {
                 return if(it.isSuccessful && it.body()!=null){
                     val data = it.body()?.data

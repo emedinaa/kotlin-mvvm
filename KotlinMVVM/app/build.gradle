@@ -46,8 +46,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtxVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelKtxVersion"
-    //implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleKtxVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit2"
     implementation "com.google.code.gson:gson:$gsonVersion"
