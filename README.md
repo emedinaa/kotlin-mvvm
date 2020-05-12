@@ -4,7 +4,6 @@
 
 MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData and Coroutines, the libraries Retrofit, Gson, Glide and OkHttp. Also, sealed classes to replace callbacks. Finally for testing, Mockito and Coroutines.
 
-<img src="assets/screenshot_coroutines_tests.png">
 
 ## Dependencies
 
