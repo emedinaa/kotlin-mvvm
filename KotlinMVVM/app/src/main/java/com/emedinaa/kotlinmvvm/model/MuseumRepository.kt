@@ -6,9 +6,8 @@ import com.emedinaa.kotlinmvvm.data.OperationResult
 class MuseumRepository:MuseumDataSource {
 
     override suspend fun retrieveMuseums():OperationResult<Museum> {
-        val response = ApiClient.build()?.museums()
-
         try {
+            val response = ApiClient.build()?.museums()
             response?.let {
                 return if(it.isSuccessful && it.body()!=null){
                     val data = it.body()?.data
