@@ -35,11 +35,7 @@ class MuseumRepository:MuseumDataSource {
         .map {
             val list = it?.body()?.data
             if(it?.isSuccessful==true){
-                if(list.isNullOrEmpty()){
-                    throw EmptyListException()
-                }else{
-                    list
-                }
+                if(list.isNullOrEmpty()) throw EmptyListException() else list
             }else{
                 throw ServiceException(it?.body()?.msg)
             }
