@@ -1,14 +1,17 @@
 package com.emedinaa.kotlinmvvm.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.emedinaa.kotlinmvvm.data.OperationResult
+import com.emedinaa.kotlinmvvm.exception.EmptyListException
+import com.emedinaa.kotlinmvvm.exception.ServiceException
 import com.emedinaa.kotlinmvvm.model.Museum
 import com.emedinaa.kotlinmvvm.model.MuseumDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -31,8 +34,19 @@ class MuseumViewModel(private val repository: MuseumDataSource):ViewModel() {
     "loadMuseums()" on constructor. Also, if you rotate the screen, the service will not be called.
      */
 
-    fun cancel(){
-        viewModelScope.cancel()
+    fun loadMuseumsFlow():LiveData<List<Museum>>{
+        return repository.retrieveMuseumsFlow()
+            .onStart {
+                _isViewLoading.postValue(true)
+            }.catch {
+                when(it){
+                    is EmptyListException ->  _isEmptyList.postValue(true)
+                    is ServiceException -> _onMessageError.postValue(it)
+                    else -> _onMessageError.postValue(it)
+                }
+            }.onCompletion {
+                _isViewLoading.postValue(false)
+            }.asLiveData()
     }
 
     fun loadMuseums(){
@@ -52,7 +66,6 @@ class MuseumViewModel(private val repository: MuseumDataSource):ViewModel() {
                 }
                 is OperationResult.Error ->{
                     _onMessageError.postValue(result.exception)
-
                 }
             }
         }

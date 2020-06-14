@@ -47,22 +47,9 @@ class MuseumActivity : AppCompatActivity() {
     }
 
     //viewmodel
-    /**
-        //Consider this if ViewModel class don't require parameters.
-        viewModel = ViewModelProviders.of(this).get(MuseumViewModel::class.java)
-
-        //if you require any parameters to  the ViewModel consider use a ViewModel Factory
-        viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
-
-        //Anonymous observer implementation
-        viewModel.museums.observe(this,Observer<List<Museum>> {
-            Log.v("CONSOLE", "data updated $it")
-            adapter.update(it)
-        })
-     */
     private fun setupViewModel(){
         viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
-        viewModel.museums.observe(this,renderMuseums)
+        //viewModel.museums.observe(this,renderMuseums)
 
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)
         viewModel.onMessageError.observe(this,onMessageErrorObserver)
@@ -96,11 +83,11 @@ class MuseumActivity : AppCompatActivity() {
         layoutError.visibility=View.GONE
     }
 
-
      //If you require updated data, you can call the method "loadMuseum" here
      override fun onResume() {
         super.onResume()
-        viewModel.loadMuseums()
+        //viewModel.loadMuseums()
+         viewModel.loadMuseumsFlow().observe(this,renderMuseums)
      }
 
 }
