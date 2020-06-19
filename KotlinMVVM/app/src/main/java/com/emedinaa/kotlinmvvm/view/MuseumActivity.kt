@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.di.Injection
@@ -17,46 +17,32 @@ import kotlinx.android.synthetic.main.layout_error.*
 
 class MuseumActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MuseumViewModel
+    private  val  viewModel:MuseumViewModel by viewModels{
+        ViewModelFactory(Injection.providerRepository())
+    }
     private lateinit var adapter: MuseumAdapter
 
-    companion object {
-        const val TAG= "CONSOLE"
-    }
 
-    /**
-     //Consider this, if you need to call the service once when activity was created.
-        Log.v(TAG,"savedInstanceState $savedInstanceState")
-        if(savedInstanceState==null){
-            viewModel.loadMuseums()
-        }
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_museum)
 
-        setupViewModel()
+        setupObservers()
         setupUI()
     }
 
-    //ui
     private fun setupUI(){
         adapter= MuseumAdapter(viewModel.museums.value?: emptyList())
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= adapter
     }
 
-    //viewmodel
-    private fun setupViewModel(){
-        viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
-        //viewModel.museums.observe(this,renderMuseums)
-
+    private fun setupObservers(){
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)
         viewModel.onMessageError.observe(this,onMessageErrorObserver)
         viewModel.isEmptyList.observe(this,emptyListObserver)
     }
 
-    //observers
     private val renderMuseums= Observer<List<Museum>> {
         Log.v(TAG, "data updated $it")
         layoutError.visibility=View.GONE
@@ -89,5 +75,9 @@ class MuseumActivity : AppCompatActivity() {
         //viewModel.loadMuseums()
          viewModel.loadMuseumsFlow().observe(this,renderMuseums)
      }
+
+    companion object {
+        const val TAG= "CONSOLE"
+    }
 
 }
