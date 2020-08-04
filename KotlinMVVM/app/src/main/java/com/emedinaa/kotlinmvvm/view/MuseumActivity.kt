@@ -15,13 +15,15 @@ import com.emedinaa.kotlinmvvm.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_museum.*
 import kotlinx.android.synthetic.main.layout_error.*
 
+/**
+ * @author : Eduardo Medina
+ */
 class MuseumActivity : AppCompatActivity() {
 
     private  val  viewModel:MuseumViewModel by viewModels{
         ViewModelFactory(Injection.providerRepository())
     }
     private lateinit var adapter: MuseumAdapter
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,7 @@ class MuseumActivity : AppCompatActivity() {
     }
 
     private fun setupUI(){
-        adapter= MuseumAdapter(viewModel.museums.value?: emptyList())
+        adapter= MuseumAdapter(emptyList())
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= adapter
     }
@@ -69,10 +71,8 @@ class MuseumActivity : AppCompatActivity() {
         layoutError.visibility=View.GONE
     }
 
-     //If you require updated data, you can call the method "loadMuseum" here
      override fun onResume() {
         super.onResume()
-        //viewModel.loadMuseums()
          viewModel.loadMuseumsFlow().observe(this,renderMuseums)
      }
 
