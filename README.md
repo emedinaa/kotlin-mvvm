@@ -23,6 +23,7 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 ## References
 
+- Kotlin flow https://codelabs.developers.google.com/codelabs/advanced-kotlin-coroutines
 - Testing coroutines on Android (Android Dev Summit 19') https://www.youtube.com/watch?v=KMb0Fs8rCRs&vl=en
 - Coroutines with Architecture components https://developer.android.com/topic/libraries/architecture/coroutines?hl=en
 - Sealed Classes Instead of Exceptions in Kotlin https://phauer.com/2019/sealed-classes-exceptions-kotlin/
