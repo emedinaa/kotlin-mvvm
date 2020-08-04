@@ -2,12 +2,14 @@ package com.emedinaa.kotlinmvvm.data
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+/**
+ * @author : Eduardo Medina
+ */
 object ApiClient {
 
     //https://obscure-earth-55790.herokuapp.com/api/museums

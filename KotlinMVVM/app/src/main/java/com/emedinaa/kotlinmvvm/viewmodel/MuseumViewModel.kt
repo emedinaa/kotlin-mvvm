@@ -1,22 +1,18 @@
 package com.emedinaa.kotlinmvvm.viewmodel
 
 import androidx.lifecycle.*
-import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.exception.EmptyListException
 import com.emedinaa.kotlinmvvm.exception.ServiceException
 import com.emedinaa.kotlinmvvm.model.Museum
 import com.emedinaa.kotlinmvvm.model.MuseumDataSource
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
+/**
+ * @author : Eduardo Medina
+ */
 class MuseumViewModel(private val repository: MuseumDataSource):ViewModel() {
-
-    private val _museums = MutableLiveData<List<Museum>>().apply { value = emptyList() }
-    val museums: LiveData<List<Museum>> = _museums
 
     private val _isViewLoading=MutableLiveData<Boolean>()
     val isViewLoading:LiveData<Boolean> = _isViewLoading
@@ -45,27 +41,5 @@ class MuseumViewModel(private val repository: MuseumDataSource):ViewModel() {
             }.onCompletion {
                 _isViewLoading.postValue(false)
             }.asLiveData()
-    }
-
-    fun loadMuseums(){
-        _isViewLoading.postValue(true)
-        viewModelScope.launch {
-            var  result:OperationResult<Museum> = withContext(Dispatchers.IO){
-                repository.retrieveMuseums()
-            }
-            _isViewLoading.postValue(false)
-            when(result){
-                is OperationResult.Success ->{
-                    if(result.data.isNullOrEmpty()){
-                            _isEmptyList.postValue(true)
-                    }else{
-                        _museums.value = result.data
-                    }
-                }
-                is OperationResult.Error ->{
-                    _onMessageError.postValue(result.exception)
-                }
-            }
-        }
     }
 }
