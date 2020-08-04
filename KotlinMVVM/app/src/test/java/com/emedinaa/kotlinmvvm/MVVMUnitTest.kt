@@ -1,13 +1,14 @@
 package com.emedinaa.kotlinmvvm
 
 import android.app.Application
-import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.emedinaa.kotlinmvvm.data.OperationResult
+import com.emedinaa.kotlinmvvm.exception.EmptyListException
+import com.emedinaa.kotlinmvvm.exception.ServiceException
 import com.emedinaa.kotlinmvvm.model.Museum
 import com.emedinaa.kotlinmvvm.viewmodel.MuseumViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -17,12 +18,13 @@ import org.mockito.Mock
 import org.mockito.*
 import org.mockito.Mockito.*
 
-
+/**
+ * @author : Eduardo Medina
+ */
 class MVVMUnitTest {
 
     @Mock
     private lateinit var context: Application
-
 
     private lateinit var viewModel:MuseumViewModel
 
@@ -31,7 +33,6 @@ class MVVMUnitTest {
     private lateinit var emptyListObserver:Observer<Boolean>
     private lateinit var onRenderMuseumsObserver:Observer<List<Museum>>
 
-    private lateinit var museumEmptyList:List<Museum>
     private lateinit var museumList:List<Museum>
 
     private val fakeMuseumRepository = FakeMuseumRepository()
@@ -46,7 +47,7 @@ class MVVMUnitTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        `when`<Context>(context.applicationContext).thenReturn(context)
+        `when`(context.applicationContext).thenReturn(context)
         Dispatchers.setMain(testDispatcher)
 
         mockData()
@@ -59,24 +60,32 @@ class MVVMUnitTest {
         testDispatcher.cleanupTestCoroutines()
     }
 
+    @Test(expected = EmptyListException::class)
+    fun `retrieve exception when Repository returns empty data`() {
+        viewModel= MuseumViewModel(fakeEmptyMuseumRepository)
+
+        runBlockingTest {
+            val flow = fakeEmptyMuseumRepository.retrieveMuseumsFlow()
+            flow.single()
+        }
+    }
 
     @Test
     fun `retrieve museums with ViewModel and Repository returns empty data`() {
         viewModel= MuseumViewModel(fakeEmptyMuseumRepository)
 
-        with(viewModel){
-            loadMuseums()
-            isViewLoading.observeForever(isViewLoadingObserver)
-            isEmptyList.observeForever(emptyListObserver)
-            museums.observeForever(onRenderMuseumsObserver)
-        }
-
         runBlockingTest {
-            val response = fakeEmptyMuseumRepository.retrieveMuseums()
-            Assert.assertTrue(response is OperationResult.Success)
-            Assert.assertNotNull(viewModel.isViewLoading.value)
-            Assert.assertTrue(viewModel.isEmptyList.value==true)
-            Assert.assertTrue(viewModel.museums.value?.size==0)
+               fakeEmptyMuseumRepository.retrieveMuseumsFlow()
+                val liveData = viewModel.loadMuseumsFlow()
+                liveData.observeForever(onRenderMuseumsObserver)
+                viewModel.isViewLoading.observeForever(isViewLoadingObserver)
+                viewModel.isEmptyList.observeForever(emptyListObserver)
+
+                Assert.assertNotNull(viewModel.isViewLoading.value)
+                Assert.assertTrue(viewModel.isEmptyList.value==true)
+
+                verify(isViewLoadingObserver).onChanged(false)
+                verify(emptyListObserver).onChanged(true)
         }
     }
 
@@ -85,16 +94,22 @@ class MVVMUnitTest {
         viewModel= MuseumViewModel(fakeMuseumRepository)
 
         with(viewModel) {
-            loadMuseums()
+            loadMuseumsFlow()
             isViewLoading.observeForever(isViewLoadingObserver)
-            museums.observeForever(onRenderMuseumsObserver)
         }
 
         runBlockingTest {
-            val response = fakeMuseumRepository.retrieveMuseums()
-            Assert.assertTrue(response is OperationResult.Success)
+            fakeMuseumRepository.retrieveMuseumsFlow()
+            val liveData = viewModel.loadMuseumsFlow()
+            liveData.observeForever(onRenderMuseumsObserver)
+            viewModel.isViewLoading.observeForever(isViewLoadingObserver)
+            viewModel.isEmptyList.observeForever(emptyListObserver)
+
             Assert.assertNotNull(viewModel.isViewLoading.value)
-            Assert.assertTrue(viewModel.museums.value?.size==3)
+            Assert.assertTrue(liveData.value?.size ==3)
+
+            verify(isViewLoadingObserver).onChanged(false)
+            verify(onRenderMuseumsObserver).onChanged(museumList)
         }
     }
 
@@ -102,17 +117,29 @@ class MVVMUnitTest {
     fun `retrieve museums with ViewModel and Repository returns an error`() {
         viewModel= MuseumViewModel(fakeErrorMuseumRepository)
         with(viewModel) {
-            loadMuseums()
+            loadMuseumsFlow()
             isViewLoading.observeForever(isViewLoadingObserver)
             isEmptyList.observeForever(emptyListObserver)
-            museums.observeForever(onRenderMuseumsObserver)
+            onMessageError.observeForever(onMessageErrorObserver)
         }
 
         runBlockingTest {
-            val response = fakeErrorMuseumRepository.retrieveMuseums()
-            Assert.assertTrue(response is OperationResult.Error)
-            Assert.assertNotNull(viewModel.isViewLoading.value)
-            Assert.assertNotNull(viewModel.onMessageError.value)
+            try {
+                val flow = fakeErrorMuseumRepository.retrieveMuseumsFlow()
+                flow.single()
+            }catch (e:ServiceException) {
+                println("e $e")
+            }
+        }
+    }
+
+    @Test(expected = ServiceException::class)
+    fun `retrieve exception when Repository returns an error`() {
+        viewModel= MuseumViewModel(fakeErrorMuseumRepository)
+
+        runBlockingTest {
+            val flow = fakeErrorMuseumRepository.retrieveMuseumsFlow()
+            flow.single()
         }
     }
 
@@ -124,7 +151,6 @@ class MVVMUnitTest {
     }
 
     private fun mockData(){
-        museumEmptyList= emptyList()
         val mockList:MutableList<Museum>  = mutableListOf()
         mockList.add(Museum(0,"Museo Nacional de Arqueología, Antropología e Historia del Perú",""))
         mockList.add(Museum(1,"Museo de Sitio Pachacamac",""))

@@ -1,9 +1,13 @@
 package com.emedinaa.kotlinmvvm
 
-import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.model.Museum
 import com.emedinaa.kotlinmvvm.model.MuseumDataSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
+/**
+ * @author : Eduardo Medina
+ */
 class FakeMuseumRepository:MuseumDataSource {
 
     private val mockList:MutableList<Museum>  = mutableListOf()
@@ -18,7 +22,9 @@ class FakeMuseumRepository:MuseumDataSource {
         mockList.add(Museum(2,"Casa Museo José Carlos Mariátegui",""))
     }
 
-    override suspend fun retrieveMuseums(): OperationResult<Museum> {
-        return OperationResult.Success(mockList)
+    override fun retrieveMuseumsFlow(): Flow<List<Museum>> {
+        return flow {
+            emit(mockList)
+        }
     }
 }
