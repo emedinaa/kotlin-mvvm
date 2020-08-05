@@ -1,7 +1,6 @@
 package com.emedinaa.kotlinmvvm.model
 
 import com.emedinaa.kotlinmvvm.data.ApiClient
-import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.exception.EmptyListException
 import com.emedinaa.kotlinmvvm.exception.ServiceException
 import kotlinx.coroutines.Dispatchers

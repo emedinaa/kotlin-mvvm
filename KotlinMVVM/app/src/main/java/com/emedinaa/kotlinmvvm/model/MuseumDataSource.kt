@@ -1,6 +1,5 @@
 package com.emedinaa.kotlinmvvm.model
 
-import com.emedinaa.kotlinmvvm.data.OperationResult
 import kotlinx.coroutines.flow.Flow
 
 /**
