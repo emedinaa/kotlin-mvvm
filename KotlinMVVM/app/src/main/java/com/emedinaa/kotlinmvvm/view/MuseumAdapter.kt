@@ -11,6 +11,9 @@ import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.model.Museum
 import kotlinx.android.synthetic.main.row_museum.view.*
 
+/**
+ * @author : Eduardo Medina
+ */
 class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<MuseumAdapter.MViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MViewHolder {
@@ -36,6 +39,7 @@ class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<Museu
     class MViewHolder(view: View) : RecyclerView.ViewHolder(view){
         private val textViewName:TextView = view.textViewName
         private val imageView:ImageView = view.imageView
+
         fun bind(museum:Museum){
             textViewName.text = museum.name
             Glide.with(imageView.context).load(museum.photo).into(imageView)
