@@ -8,6 +8,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
+/**
+ * @author : Eduardo Medina
+ */
 @Module
 @InstallIn(ApplicationComponent::class)
 object MVVMModule {

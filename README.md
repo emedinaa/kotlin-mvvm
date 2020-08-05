@@ -69,6 +69,7 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 ## References
 
+- Dependency Injection on Android with Hilt https://medium.com/androiddevelopers/dependency-injection-on-android-with-hilt-67b6031e62d
 - Dependency injection with Hilt https://developer.android.com/training/dependency-injection/hilt-android
 - Testing coroutines on Android (Android Dev Summit 19') https://www.youtube.com/watch?v=KMb0Fs8rCRs&vl=en
 - Coroutines with Architecture components https://developer.android.com/topic/libraries/architecture/coroutines?hl=en
