@@ -2,28 +2,20 @@
 
 [![Kotlin](https://img.shields.io/badge/kotlin-1.3.21-blue.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-3.3.2-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin) [![Mockito](https://img.shields.io/badge/mockito-2.27.0-orange.svg)](https://site.mockito.org/) [![Retrofit](https://img.shields.io/badge/retrofit-2.6.0-brightgreen)](https://square.github.io/retrofit/) [![Coroutines](https://img.shields.io/badge/coroutines-1.3.0-blueviolet)](https://kotlinlang.org/docs/reference/coroutines-overview.html) [![Coroutines-test](https://img.shields.io/badge/coroutines--test-1.3.0-yellow)](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test) [![OkHttp](https://img.shields.io/badge/okhttp-4.0.1-lightgrey)](https://square.github.io/okhttp/)
 
-MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData and Coroutines, the libraries Retrofit, Gson, Glide and OkHttp. Also, sealed classes to replace callbacks. Finally for testing, Mockito and Coroutines.
+MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData, Coroutines and Hilt(DI), the libraries Retrofit, Gson, Glide and OkHttp. Also, sealed classes to replace callbacks. Finally for testing, Mockito and Coroutines.
 
-## MVVM Pattern (Model View ViewModel)
- <img src="assets/AndroidMVVM.png">
+manual dependency injection
+<img src="assets/di.png">
 
-## Demo
+with Hilt
+<img src="assets/hilt.png">
 
-<img src="assets/kotlinmvvmscreenrotation720.gif?raw=true" height="480">
+## Testings
+<img src="assets/unit_tests.png" height="120"> 
 
-<img src="assets/kotlinmvvm720.gif?raw=true" height="480"> 
-
-## Architecture
-<img src="assets/architecture.png" height="540">
-
-## Flow
-<img src="assets/MVVMFlow.png" height="540">
- 
-## Screenshots
-
-<img src="assets/screenshot.png" height="480"> <img src="assets/screenshot_error.png" height="480"> <img src="assets/screenshot_empty.png" height="480">
-
-<img src="assets/unit_tests.png" height="196"> 
+<img src="assets/android_test_01.png" width="520"> 
+<img src="assets/android_test_02.png" width="520"> 
+<img src="assets/android_test_03.png" width="520"> 
 
 ## Slides
 
@@ -48,8 +40,6 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 - Added Unit Testing with Mockito (27th May) [Link](https://github.com/emedinaa/kotlin-mvvm/commit/92d9e5a659c21178364d0b51e904fd126b0b6204)
 
 - Fix load images android P by Carlos Ugaz [carlosgub](https://github.com/carlosgub) [Link](https://github.com/emedinaa/kotlin-mvvm/pull/1)
-
-<img src="assets/screenshot_coroutines_tests.png">
 
 
 ## Dependencies
