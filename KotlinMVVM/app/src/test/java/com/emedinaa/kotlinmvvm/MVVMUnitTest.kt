@@ -1,7 +1,6 @@
 package com.emedinaa.kotlinmvvm
 
 import android.app.Application
-import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.emedinaa.kotlinmvvm.data.OperationResult
@@ -47,7 +46,7 @@ class MVVMUnitTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        `when`<Context>(context.applicationContext).thenReturn(context)
+        `when`(context.applicationContext).thenReturn(context)
         Dispatchers.setMain(testDispatcher)
 
         mockData()
