@@ -29,7 +29,11 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpDKzO--uA-4b6LUr8g/edit?usp=sharing
 
-## Updates [June 2020]
+## Updates [August 2020]
+
+- Added dependency injection with Hilt [branch hilt](https://github.com/emedinaa/kotlin-mvvm/tree/hilt)
+
+- Added unit tests with Flow [branch flow](https://github.com/emedinaa/kotlin-mvvm/tree/flow)
 
 - Added kotlin Flow and fragment ktx [branch flow](https://github.com/emedinaa/kotlin-mvvm/tree/flow)
 
