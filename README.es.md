@@ -1,14 +1,15 @@
 # kotlin-mvvm
+
 Languages: [English](Readme.md), [Spanish](Readme.es.md)
 
 [![Kotlin](https://img.shields.io/badge/kotlin-1.3.21-blue.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-3.3.2-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin) [![Mockito](https://img.shields.io/badge/mockito-2.27.0-orange.svg)](https://site.mockito.org/)
 
-MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData, the libraries Retrofit, Glide and Mockito for testing.
+MVVM(Model View ViewModel) ejemplo en Kotlin usando los componentes : ViewModel, LiveData, las bibliotecas Retrofit, Glide y Mockito para pruebas unitarias.
 
-## MVVM Pattern (Model View ViewModel)
+### MVVM Pattern (Model View ViewModel)
  <img src="assets/AndroidMVVM.png">
 
-## Demo
+### Demo
 
 <img src="assets/kotlinmvvmscreenrotation720.gif?raw=true" height="480">
 
@@ -32,25 +33,25 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 ### Updates [August 2020]
 
-- Added dependency injection with Hilt, included android tests [branch hilt](https://github.com/emedinaa/kotlin-mvvm/tree/hilt)
+- Se agregó inyección de dependencias con Hilt dependency, incluye android tests. [branch hilt](https://github.com/emedinaa/kotlin-mvvm/tree/hilt)
 
-- Added unit tests with Flow [branch flow](https://github.com/emedinaa/kotlin-mvvm/tree/flow)
+- Se agregó tests unitarios con Flow [branch flow](https://github.com/emedinaa/kotlin-mvvm/tree/flow)
 
-- Added kotlin Flow and fragment ktx [branch flow](https://github.com/emedinaa/kotlin-mvvm/tree/flow)
+- Se agregó Kotlin Flow y la dependencias Fragment Ktx [branch flow](https://github.com/emedinaa/kotlin-mvvm/tree/flow)
 
-- Room [branch room](https://github.com/emedinaa/kotlin-mvvm/tree/room)
+- Se agregó un ejemplo con Room [branch room](https://github.com/emedinaa/kotlin-mvvm/tree/room)
 
-- Added View Binding [branch viewbinding](https://github.com/emedinaa/kotlin-mvvm/tree/viewbinding)
+- Se agregó View Binding [branch viewbinding](https://github.com/emedinaa/kotlin-mvvm/tree/viewbinding)
 
-- Dependencies versions were updated and ViewModelProviders class was removed (deprecated). [all branches](https://github.com/emedinaa/kotlin-mvvm/)
+- Se actualizó las versiones de las dependencias del proyecto y se removio la clase ViewModelProviders(deprecated). [all branches](https://github.com/emedinaa/kotlin-mvvm/)
 
-- Added Coroutines with retrofit and sealed classes to replace callbacks. Included testing with Coroutines. [branch coroutines](https://github.com/emedinaa/kotlin-mvvm/tree/coroutines)
+- Se agregó coroutines con Retrofit y sealed classes(clases selladas) para reemplazar los callbacks. Incluye tests unitarios con coroutines. [branch coroutines](https://github.com/emedinaa/kotlin-mvvm/tree/coroutines)
 
-- Added Koin, dependency injection framework written in Kotlin. Included integration with Mockito for testing (11th Oct) [branch koin](https://github.com/emedinaa/kotlin-mvvm/tree/koin)
+- Se agregó Koin, framework de inyección de dependencias escrito en Kotlin, Incluye también integración con Mockito para los tests unitarios.(11th Oct) [branch koin](https://github.com/emedinaa/kotlin-mvvm/tree/koin)
 
-- Added Unit Testing with Mockito (27th May) [Link](https://github.com/emedinaa/kotlin-mvvm/commit/92d9e5a659c21178364d0b51e904fd126b0b6204)
+- Se agregó tests unitarios con Mockito (27th May) [Link](https://github.com/emedinaa/kotlin-mvvm/commit/92d9e5a659c21178364d0b51e904fd126b0b6204)
 
-- Fix load images android P by Carlos Ugaz [carlosgub](https://github.com/carlosgub) [Link](https://github.com/emedinaa/kotlin-mvvm/pull/1)
+- Se resolvió la carga de images en Android 9.0(Pie) por Carlos Ugaz [carlosgub](https://github.com/carlosgub) [Link](https://github.com/emedinaa/kotlin-mvvm/pull/1)
 
 
 ### Dependencies
@@ -75,6 +76,6 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 ### Contributing and reporting issues
 
-If you want to contribute in this repository, please send me a pull request or if you want to report some issues please send at https://github.com/emedinaa/mvvm-step-by-step/issues
+Si deseas contribuir en este repositorio, por favor enviar un Pull Request o si quieres reportar algún error por favor enviar a https://github.com/emedinaa/kotlin-mvvm/issues
 
-I appreciate any question or comment. Also, if you consider it useful, you can give me a star ⭐ ⭐ ⭐.
+Cualquier duda o consulta es bienvenida. También, si consideras que este repositorio útil, puedes darle una estrella ⭐ ⭐ ⭐.
