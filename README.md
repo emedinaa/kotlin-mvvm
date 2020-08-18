@@ -1,8 +1,10 @@
 # kotlin-mvvm + Coroutines + Hilt
 
+Languages: [English](Readme.md), [Spanish](Readme.es.md)
+
 [![Kotlin](https://img.shields.io/badge/kotlin-1.3.21-blue.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-3.3.2-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin) [![Mockito](https://img.shields.io/badge/mockito-2.27.0-orange.svg)](https://site.mockito.org/) [![Retrofit](https://img.shields.io/badge/retrofit-2.6.0-brightgreen)](https://square.github.io/retrofit/) [![Coroutines](https://img.shields.io/badge/coroutines-1.3.0-blueviolet)](https://kotlinlang.org/docs/reference/coroutines-overview.html) [![Coroutines-test](https://img.shields.io/badge/coroutines--test-1.3.0-yellow)](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test) [![OkHttp](https://img.shields.io/badge/okhttp-4.0.1-lightgrey)](https://square.github.io/okhttp/)
 
-MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData, Coroutines and Hilt(DI), the libraries Retrofit, Gson, Glide and OkHttp. Also, sealed classes to replace callbacks. Finally for testing, Mockito and Coroutines.
+MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData, Coroutines and Hilt(DI), the libraries Retrofit, Gson, Glide and OkHttp. Also, android tests with Hilt.
 
 manual dependency injection
 <img src="assets/di.png">
@@ -10,18 +12,18 @@ manual dependency injection
 with Hilt
 <img src="assets/hilt.png">
 
-## Testings
+### Testings
 <img src="assets/unit_tests.png" height="120"> 
 
 <img src="assets/android_test_01.png" width="520"> 
 <img src="assets/android_test_02.png" width="520"> 
 <img src="assets/android_test_03.png" width="520"> 
 
-## Slides
+### Slides
 
 Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpDKzO--uA-4b6LUr8g/edit?usp=sharing
 
-## Updates [August 2020]
+### Updates [August 2020]
 
 - Added dependency injection with Hilt [branch hilt](https://github.com/emedinaa/kotlin-mvvm/tree/hilt)
 
@@ -42,7 +44,7 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 - Fix load images android P by Carlos Ugaz [carlosgub](https://github.com/carlosgub) [Link](https://github.com/emedinaa/kotlin-mvvm/pull/1)
 
 
-## Dependencies
+### Dependencies
 
 - Coroutines 1 [version: '1.3.0'](https://kotlinlang.org/docs/reference/coroutines-overview.html)
 - Coroutines Test 1 [version '1.3.0'](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test)
@@ -57,7 +59,7 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 - Mockito [version: '2.27.0'](https://site.mockito.org/)
 - Arch Testing [version: '2.1.0'](https://mvnrepository.com/artifact/android.arch.core/core-testing?repo=google)
 
-## References
+### References
 
 - Dependency Injection on Android with Hilt https://medium.com/androiddevelopers/dependency-injection-on-android-with-hilt-67b6031e62d
 - Dependency injection with Hilt https://developer.android.com/training/dependency-injection/hilt-android
@@ -72,4 +74,9 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 - Unit Testing + Mockito + Kotlin + Architecture components https://medium.com/@marco_cattaneo/unit-testing-with-mockito-on-kotlin-android-project-with-architecture-components-2059eb637912
 - Junit + LiveData https://jeroenmols.com/blog/2019/01/17/livedatajunit5/
 
-I appreciate any question or comment. Also, if you consider it useful , you can give me a star. Besides, you can put any issue at https://github.com/emedinaa/kotlin-mvvm/issues
+### Contributing and reporting issues
+
+If you want to contribute in this repository, please send me a pull request or if you want to report some issues please send at https://github.com/emedinaa/kotlin-mvvm/issues
+
+I appreciate any question or comment. Also, if you consider it useful, you can give me a star ⭐ ⭐ ⭐.
+
