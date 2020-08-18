@@ -75,6 +75,6 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 ### Contributing and reporting issues
 
-If you want to contribute in this repository, please send me a pull request or if you want to report some issues please send at https://github.com/emedinaa/mvvm-step-by-step/issues
+If you want to contribute in this repository, please send me a pull request or if you want to report some issues please send at https://github.com/emedinaa/kotlin-mvvm/issues
 
 I appreciate any question or comment. Also, if you consider it useful, you can give me a star ⭐ ⭐ ⭐.
