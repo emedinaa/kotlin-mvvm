@@ -2,7 +2,6 @@ package com.emedinaa.kotlinmvvm.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.emedinaa.kotlinmvvm.model.MuseumDataSource
 import com.emedinaa.kotlinmvvm.model.MuseumRepository
 
 /**

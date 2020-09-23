@@ -6,10 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.model.Museum
-import com.emedinaa.kotlinmvvm.model.MuseumDataSource
 import com.emedinaa.kotlinmvvm.model.MuseumRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -45,13 +43,13 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
             when (result) {
                 is OperationResult.Success -> {
                     if (result.data.isNullOrEmpty()) {
-                        _isEmptyList.postValue(true)
+                        _isEmptyList.value = true
                     } else {
                         _museums.value = result.data
                     }
                 }
                 is OperationResult.Error -> {
-                    _onMessageError.postValue(result.exception)
+                    _onMessageError.value = result.exception
 
                 }
             }
