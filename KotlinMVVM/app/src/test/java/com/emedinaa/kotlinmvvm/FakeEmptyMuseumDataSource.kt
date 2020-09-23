@@ -1,8 +1,8 @@
 package com.emedinaa.kotlinmvvm
 
 import com.emedinaa.kotlinmvvm.data.OperationResult
-import com.emedinaa.kotlinmvvm.model.Museum
-import com.emedinaa.kotlinmvvm.model.MuseumDataSource
+import com.emedinaa.kotlinmvvm.domain.Museum
+import com.emedinaa.kotlinmvvm.data.MuseumDataSource
 
 /**
  * @author Eduardo Medina

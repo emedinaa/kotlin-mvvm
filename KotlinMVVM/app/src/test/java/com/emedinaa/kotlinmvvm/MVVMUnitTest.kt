@@ -3,10 +3,11 @@ package com.emedinaa.kotlinmvvm
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.emedinaa.kotlinmvvm.data.MuseumRepository
 import com.emedinaa.kotlinmvvm.data.OperationResult
-import com.emedinaa.kotlinmvvm.model.Museum
-import com.emedinaa.kotlinmvvm.model.MuseumRepository
-import com.emedinaa.kotlinmvvm.viewmodel.MuseumViewModel
+import com.emedinaa.kotlinmvvm.domain.Museum
+import com.emedinaa.kotlinmvvm.domain.GetMuseumsUseCase
+import com.emedinaa.kotlinmvvm.presentation.viewmodel.MuseumViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -63,7 +64,9 @@ class MVVMUnitTest {
 
     @Test
     fun `retrieve museums with ViewModel and Repository returns empty data`() {
-        viewModel = MuseumViewModel(MuseumRepository(fakeEmptyMuseumDataSource))
+        viewModel = MuseumViewModel(
+            GetMuseumsUseCase(MuseumRepository(fakeEmptyMuseumDataSource))
+        )
 
         with(viewModel) {
             loadMuseums()
@@ -83,7 +86,9 @@ class MVVMUnitTest {
 
     @Test
     fun `retrieve museums with ViewModel and Repository returns full data`() {
-        viewModel = MuseumViewModel(MuseumRepository(fakeMuseumDataSource))
+        viewModel = MuseumViewModel(
+            GetMuseumsUseCase(MuseumRepository(fakeMuseumDataSource))
+        )
 
         with(viewModel) {
             loadMuseums()
@@ -101,7 +106,9 @@ class MVVMUnitTest {
 
     @Test
     fun `retrieve museums with ViewModel and Repository returns an error`() {
-        viewModel = MuseumViewModel(MuseumRepository(fakeErrorMuseumDataSource))
+        viewModel = MuseumViewModel(
+            GetMuseumsUseCase(MuseumRepository(fakeErrorMuseumDataSource))
+        )
         with(viewModel) {
             loadMuseums()
             isViewLoading.observeForever(isViewLoadingObserver)
@@ -134,8 +141,20 @@ class MVVMUnitTest {
                 ""
             )
         )
-        mockList.add(Museum(1, "Museo de Sitio Pachacamac", ""))
-        mockList.add(Museum(2, "Casa Museo José Carlos Mariátegui", ""))
+        mockList.add(
+            Museum(
+                1,
+                "Museo de Sitio Pachacamac",
+                ""
+            )
+        )
+        mockList.add(
+            Museum(
+                2,
+                "Casa Museo José Carlos Mariátegui",
+                ""
+            )
+        )
 
         museumList = mockList.toList()
     }

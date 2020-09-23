@@ -1,8 +1,8 @@
 package com.emedinaa.kotlinmvvm
 
 import com.emedinaa.kotlinmvvm.data.OperationResult
-import com.emedinaa.kotlinmvvm.model.Museum
-import com.emedinaa.kotlinmvvm.model.MuseumDataSource
+import com.emedinaa.kotlinmvvm.domain.Museum
+import com.emedinaa.kotlinmvvm.data.MuseumDataSource
 
 /**
  * @author Eduardo Medina
@@ -23,8 +23,20 @@ class FakeMuseumDataSource : MuseumDataSource {
                 ""
             )
         )
-        mockList.add(Museum(1, "Museo de Sitio Pachacamac", ""))
-        mockList.add(Museum(2, "Casa Museo José Carlos Mariátegui", ""))
+        mockList.add(
+            Museum(
+                1,
+                "Museo de Sitio Pachacamac",
+                ""
+            )
+        )
+        mockList.add(
+            Museum(
+                2,
+                "Casa Museo José Carlos Mariátegui",
+                ""
+            )
+        )
     }
 
     override suspend fun retrieveMuseums(): OperationResult<Museum> {
