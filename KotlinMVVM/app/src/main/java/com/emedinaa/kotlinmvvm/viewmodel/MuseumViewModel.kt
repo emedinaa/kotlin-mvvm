@@ -34,7 +34,7 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
      */
 
     fun loadMuseums() {
-        _isViewLoading.postValue(true)
+        _isViewLoading.value = true
         repository.fetchMuseums(object : OperationCallback<Museum> {
             override fun onError(error: String?) {
                 _isViewLoading.value = false
@@ -42,7 +42,7 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
             }
 
             override fun onSuccess(data: List<Museum>?) {
-                _isViewLoading.postValue(false)
+                _isViewLoading.value = false
                 if (data.isNullOrEmpty()) {
                     _isEmptyList.value = true
 

@@ -25,10 +25,10 @@ class MuseumActivity : AppCompatActivity() {
 
     /**
     //Consider this, if you need to call the service once when activity was created.
-        Log.v(TAG,"savedInstanceState $savedInstanceState")
-        if(savedInstanceState==null){
-            viewModel.loadMuseums()
-        }
+    Log.v(TAG,"savedInstanceState $savedInstanceState")
+    if(savedInstanceState==null){
+    viewModel.loadMuseums()
+    }
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
