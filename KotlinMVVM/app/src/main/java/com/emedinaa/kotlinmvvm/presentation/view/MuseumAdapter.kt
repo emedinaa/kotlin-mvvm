@@ -1,4 +1,4 @@
-package com.emedinaa.kotlinmvvm.view
+package com.emedinaa.kotlinmvvm.presentation.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -42,7 +42,7 @@ class MuseumAdapter(private var museums: List<Museum>) :
         private val imageView: ImageView = view.imageView
 
         fun bind(museum: Museum) {
-            textViewName.text = museum.name
+            textViewName.text = museum.name.capitalize()
             Glide.with(imageView.context).load(museum.photo).into(imageView)
         }
     }

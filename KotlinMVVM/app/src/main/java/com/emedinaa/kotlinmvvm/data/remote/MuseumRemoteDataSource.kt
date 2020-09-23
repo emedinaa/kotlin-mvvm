@@ -1,5 +1,7 @@
-package com.emedinaa.kotlinmvvm.data
+package com.emedinaa.kotlinmvvm.data.remote
 
+import com.emedinaa.kotlinmvvm.data.MuseumDataSource
+import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.domain.Museum
 
 /**
@@ -19,10 +21,16 @@ class MuseumRemoteDataSource(apiClient: ApiClient) :
                     OperationResult.Success(data)
                 } else {
                     val message = it.body()?.msg
-                    OperationResult.Error(Exception(message))
+                    OperationResult.Error(
+                        Exception(
+                            message
+                        )
+                    )
                 }
             } ?: run {
-                return OperationResult.Error(Exception("Ocurrió un error"))
+                return OperationResult.Error(
+                    Exception("Ocurrió un error")
+                )
             }
         } catch (e: Exception) {
             return OperationResult.Error(e)

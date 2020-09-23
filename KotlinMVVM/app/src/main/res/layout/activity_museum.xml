@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.MuseumActivity">
+        tools:context=".presentation.view.MuseumActivity">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -25,8 +25,8 @@
     <ProgressBar
             android:id="@+id/progressBar"
             style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:indeterminate="true"
             android:visibility="gone"
             tools:visibility="visible"

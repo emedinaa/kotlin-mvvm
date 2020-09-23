@@ -1,4 +1,4 @@
-package com.emedinaa.kotlinmvvm.view
+package com.emedinaa.kotlinmvvm.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.di.Injection
 import com.emedinaa.kotlinmvvm.domain.Museum
-import com.emedinaa.kotlinmvvm.viewmodel.MuseumViewModel
-import com.emedinaa.kotlinmvvm.viewmodel.ViewModelFactory
+import com.emedinaa.kotlinmvvm.presentation.viewmodel.MuseumViewModel
+import com.emedinaa.kotlinmvvm.presentation.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_museum.*
 import kotlinx.android.synthetic.main.layout_error.*
 
@@ -51,10 +51,10 @@ class MuseumActivity : AppCompatActivity() {
 
     //view model
     private fun setupViewModel() {
-        viewModel = ViewModelProviders.of(this, ViewModelFactory(Injection.providerRepository()))
+        viewModel = ViewModelProviders.of(this, ViewModelFactory(Injection.provideMuseumUseCase()))
             .get(MuseumViewModel::class.java)
-        viewModel.museums.observe(this, renderMuseums)
 
+        viewModel.museums.observe(this, renderMuseums)
         viewModel.isViewLoading.observe(this, isViewLoadingObserver)
         viewModel.onMessageError.observe(this, onMessageErrorObserver)
         viewModel.isEmptyList.observe(this, emptyListObserver)

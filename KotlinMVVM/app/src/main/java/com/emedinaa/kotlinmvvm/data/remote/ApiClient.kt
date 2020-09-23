@@ -1,4 +1,4 @@
-package com.emedinaa.kotlinmvvm.data
+package com.emedinaa.kotlinmvvm.data.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,4 +1,4 @@
-package com.emedinaa.kotlinmvvm.viewmodel
+package com.emedinaa.kotlinmvvm.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.domain.Museum
 import com.emedinaa.kotlinmvvm.data.MuseumRepository
+import com.emedinaa.kotlinmvvm.domain.GetMuseumsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,7 +15,7 @@ import kotlinx.coroutines.withContext
 /**
  * @author Eduardo Medina
  */
-class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
+class MuseumViewModel(private val getMuseums: GetMuseumsUseCase) : ViewModel() {
 
     private val _museums = MutableLiveData<List<Museum>>().apply { value = emptyList() }
     val museums: LiveData<List<Museum>> = _museums
@@ -37,7 +38,8 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
         _isViewLoading.value = true
         viewModelScope.launch {
             var result: OperationResult<Museum> = withContext(Dispatchers.IO) {
-                repository.fetchMuseums()
+                getMuseums()
+                //getMuseums.execute()
             }
             _isViewLoading.value = false
             when (result) {
@@ -50,7 +52,6 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
                 }
                 is OperationResult.Error -> {
                     _onMessageError.value = result.exception
-
                 }
             }
         }
