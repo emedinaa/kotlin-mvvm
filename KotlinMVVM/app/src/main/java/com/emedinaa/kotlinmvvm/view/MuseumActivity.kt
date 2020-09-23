@@ -14,17 +14,17 @@ import com.emedinaa.kotlinmvvm.viewmodel.MuseumViewModel
 import kotlinx.android.synthetic.main.activity_museum.*
 import kotlinx.android.synthetic.main.layout_error.*
 
+/**
+ * @author Eduardo Medina
+ */
 class MuseumActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MuseumViewModel
     private lateinit var adapter: MuseumAdapter
 
-    companion object {
-        const val TAG= "CONSOLE"
-    }
 
     /**
-     //Consider this, if you need to call the service once when activity was created.
+    //Consider this, if you need to call the service once when activity was created.
         Log.v(TAG,"savedInstanceState $savedInstanceState")
         if(savedInstanceState==null){
             viewModel.loadMuseums()
@@ -39,69 +39,59 @@ class MuseumActivity : AppCompatActivity() {
     }
 
     //ui
-    private fun setupUI(){
-        adapter= MuseumAdapter(viewModel.museums.value?: emptyList())
-        recyclerView.layoutManager= LinearLayoutManager(this)
-        recyclerView.adapter= adapter
+    private fun setupUI() {
+        adapter = MuseumAdapter(viewModel.museums.value ?: emptyList())
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
 
-    //viewmodel
-    /**
-        //Consider this if ViewModel class don't require parameters.
-        viewModel = ViewModelProviders.of(this).get(MuseumViewModel::class.java)
+    //view model
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            Injection.provideViewModelFactory()
+        ).get(MuseumViewModel::class.java)
 
-        //if you require any parameters to  the ViewModel consider use a ViewModel Factory
-        //viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
-        viewModel = ViewModelProvider(this,Injection.provideViewModelFactory()).get(MuseumViewModel::class.java)
-
-        //Anonymous observer implementation
-        viewModel.museums.observe(this,Observer<List<Museum>> {
-            Log.v("CONSOLE", "data updated $it")
-            adapter.update(it)
-        })
-     */
-    private fun setupViewModel(){
-        viewModel = ViewModelProvider(this,Injection.provideViewModelFactory()).get(MuseumViewModel::class.java)
-        //viewModel = ViewModelProvider(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
-        //viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRepository())).get(MuseumViewModel::class.java)
-        viewModel.museums.observe(this,renderMuseums)
-
-        viewModel.isViewLoading.observe(this,isViewLoadingObserver)
-        viewModel.onMessageError.observe(this,onMessageErrorObserver)
-        viewModel.isEmptyList.observe(this,emptyListObserver)
+        viewModel.museums.observe(this, renderMuseums)
+        viewModel.isViewLoading.observe(this, isViewLoadingObserver)
+        viewModel.onMessageError.observe(this, onMessageErrorObserver)
+        viewModel.isEmptyList.observe(this, emptyListObserver)
     }
 
     //observers
-    private val renderMuseums= Observer<List<Museum>> {
+    private val renderMuseums = Observer<List<Museum>> {
         Log.v(TAG, "data updated $it")
-        layoutError.visibility=View.GONE
-        layoutEmpty.visibility=View.GONE
+        layoutError.visibility = View.GONE
+        layoutEmpty.visibility = View.GONE
         adapter.update(it)
     }
 
-    private val isViewLoadingObserver= Observer<Boolean> {
+    private val isViewLoadingObserver = Observer<Boolean> {
         Log.v(TAG, "isViewLoading $it")
-        val visibility=if(it)View.VISIBLE else View.GONE
-        progressBar.visibility= visibility
+        val visibility = if (it) View.VISIBLE else View.GONE
+        progressBar.visibility = visibility
     }
 
-    private val onMessageErrorObserver= Observer<Any> {
+    private val onMessageErrorObserver = Observer<Any> {
         Log.v(TAG, "onMessageError $it")
-        layoutError.visibility=View.VISIBLE
-        layoutEmpty.visibility=View.GONE
-        textViewError.text= "Error $it"
+        layoutError.visibility = View.VISIBLE
+        layoutEmpty.visibility = View.GONE
+        textViewError.text = "Error $it"
     }
 
-    private val emptyListObserver= Observer<Boolean> {
+    private val emptyListObserver = Observer<Boolean> {
         Log.v(TAG, "emptyListObserver $it")
-        layoutEmpty.visibility=View.VISIBLE
-        layoutError.visibility=View.GONE
+        layoutEmpty.visibility = View.VISIBLE
+        layoutError.visibility = View.GONE
     }
 
-     //If you require updated data, you can call the method "loadMuseum" here
-     override fun onResume() {
+    //If you require updated data, you can call the method "loadMuseum" here
+    override fun onResume() {
         super.onResume()
         viewModel.loadMuseums()
-     }
+    }
 
+    companion object {
+        const val TAG = "CONSOLE"
+    }
 }
