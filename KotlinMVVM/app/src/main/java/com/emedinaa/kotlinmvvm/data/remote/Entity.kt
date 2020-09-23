@@ -1,6 +1,6 @@
 package com.emedinaa.kotlinmvvm.data
 
-import com.emedinaa.kotlinmvvm.model.Museum
+import com.emedinaa.kotlinmvvm.domain.Museum
 
 /**
  * @author Eduardo Medina

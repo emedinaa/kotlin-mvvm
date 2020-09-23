@@ -2,7 +2,7 @@ package com.emedinaa.kotlinmvvm.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.emedinaa.kotlinmvvm.model.MuseumRepository
+import com.emedinaa.kotlinmvvm.data.MuseumRepository
 
 /**
  * @author Eduardo Medina

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.emedinaa.kotlinmvvm.R
-import com.emedinaa.kotlinmvvm.model.Museum
+import com.emedinaa.kotlinmvvm.domain.Museum
 import kotlinx.android.synthetic.main.row_museum.view.*
 
 /**

@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.di.Injection
-import com.emedinaa.kotlinmvvm.model.Museum
+import com.emedinaa.kotlinmvvm.domain.Museum
 import com.emedinaa.kotlinmvvm.viewmodel.MuseumViewModel
 import com.emedinaa.kotlinmvvm.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_museum.*

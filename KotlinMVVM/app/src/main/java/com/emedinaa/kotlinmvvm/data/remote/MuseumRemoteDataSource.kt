@@ -1,12 +1,12 @@
 package com.emedinaa.kotlinmvvm.data
 
-import com.emedinaa.kotlinmvvm.model.Museum
-import com.emedinaa.kotlinmvvm.model.MuseumDataSource
+import com.emedinaa.kotlinmvvm.domain.Museum
 
 /**
  * @author Eduardo Medina
  */
-class MuseumRemoteDataSource(apiClient: ApiClient) : MuseumDataSource {
+class MuseumRemoteDataSource(apiClient: ApiClient) :
+    MuseumDataSource {
 
     private val service = apiClient.build()
 
