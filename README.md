@@ -30,6 +30,8 @@ MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, Live
 
 Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpDKzO--uA-4b6LUr8g/edit?usp=sharing
 
+Android MVVM Clean https://docs.google.com/presentation/d/1luTzvqGaMjVycEx109-AjYIj3FIpXYAt3Mnu-gjqxtc/edit?usp=sharing
+
 ### Updates [August 2020]
 
 - Added dependency injection with Hilt, included android tests [branch hilt](https://github.com/emedinaa/kotlin-mvvm/tree/hilt)
