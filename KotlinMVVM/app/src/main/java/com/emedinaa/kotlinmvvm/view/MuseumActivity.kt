@@ -1,11 +1,11 @@
 package com.emedinaa.kotlinmvvm.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.di.Injection
@@ -19,9 +19,10 @@ import kotlinx.android.synthetic.main.layout_error.*
  */
 class MuseumActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MuseumViewModel
+    private val viewModel by viewModels<MuseumViewModel> {
+        Injection.provideViewModelFactory()
+    }
     private lateinit var adapter: MuseumAdapter
-
 
     /**
     //Consider this, if you need to call the service once when activity was created.
@@ -47,11 +48,6 @@ class MuseumActivity : AppCompatActivity() {
 
     //view model
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(
-            this,
-            Injection.provideViewModelFactory()
-        ).get(MuseumViewModel::class.java)
-
         viewModel.museums.observe(this, renderMuseums)
         viewModel.isViewLoading.observe(this, isViewLoadingObserver)
         viewModel.onMessageError.observe(this, onMessageErrorObserver)

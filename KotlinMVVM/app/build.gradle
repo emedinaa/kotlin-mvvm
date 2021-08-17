@@ -17,11 +17,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
@@ -43,6 +52,7 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
 
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2"
