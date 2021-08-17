@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.domain.Museum
-import com.emedinaa.kotlinmvvm.data.MuseumRepository
 import com.emedinaa.kotlinmvvm.domain.GetMuseumsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

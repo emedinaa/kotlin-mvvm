@@ -8,7 +8,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emedinaa.kotlinmvvm.R
+import com.emedinaa.kotlinmvvm.data.MuseumRepository
+import com.emedinaa.kotlinmvvm.data.remote.ApiClient
+import com.emedinaa.kotlinmvvm.data.remote.MuseumRemoteDataSource
 import com.emedinaa.kotlinmvvm.di.Injection
+import com.emedinaa.kotlinmvvm.domain.GetMuseumsUseCase
 import com.emedinaa.kotlinmvvm.domain.Museum
 import com.emedinaa.kotlinmvvm.presentation.viewmodel.MuseumViewModel
 import com.emedinaa.kotlinmvvm.presentation.viewmodel.ViewModelFactory
@@ -20,6 +24,15 @@ import kotlinx.android.synthetic.main.layout_error.*
  */
 class MuseumActivity : AppCompatActivity() {
 
+    /*private val viewModel by lazy {
+       ViewModelProviders.of(this, ViewModelFactory(
+            GetMuseumsUseCase(MuseumRepository(MuseumRemoteDataSource(ApiClient))))).get(MuseumViewModel::class.java)
+    }*/
+
+    private val viewModel1 by lazy {
+        ViewModelProviders.of(this, ViewModelFactory(Injection.provideMuseumUseCase()))
+            .get(MuseumViewModel::class.java)
+    }
     private lateinit var viewModel: MuseumViewModel
     private lateinit var adapter: MuseumAdapter
 
