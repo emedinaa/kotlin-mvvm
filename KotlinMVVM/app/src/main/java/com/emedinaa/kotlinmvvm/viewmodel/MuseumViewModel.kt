@@ -49,8 +49,7 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
                     }
                 }
                 is OperationResult.Error -> {
-                    _onMessageError.value = result.exception
-
+                    _onMessageError.value = result.exception?:Exception("Ocurrió un error")
                 }
             }
         }

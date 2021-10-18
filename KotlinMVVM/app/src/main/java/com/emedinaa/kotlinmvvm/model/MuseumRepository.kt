@@ -1,5 +1,6 @@
 package com.emedinaa.kotlinmvvm.model
 
+import com.emedinaa.kotlinmvvm.data.MuseumDataSource
 import com.emedinaa.kotlinmvvm.data.OperationResult
 
 /**

@@ -1,39 +1,37 @@
 package com.emedinaa.kotlinmvvm.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.di.Injection
 import com.emedinaa.kotlinmvvm.model.Museum
 import com.emedinaa.kotlinmvvm.viewmodel.MuseumViewModel
 import com.emedinaa.kotlinmvvm.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.activity_museum.*
-import kotlinx.android.synthetic.main.layout_error.*
 
 /**
  * @author Eduardo Medina
  */
+private const val TAG = "CONSOLE"
+
 class MuseumActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MuseumViewModel
+    private val viewModel by viewModels<MuseumViewModel> {
+        ViewModelFactory(Injection.providerRepository())
+    }
     private lateinit var adapter: MuseumAdapter
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var layoutError: View
+    private lateinit var textViewError: TextView
+    private lateinit var layoutEmpty: View
+    private lateinit var progressBar: View
 
-    companion object {
-        const val TAG = "CONSOLE"
-    }
-
-    /**
-    //Consider this, if you need to call the service once when activity was created.
-    Log.v(TAG,"savedInstanceState $savedInstanceState")
-    if(savedInstanceState==null){
-    viewModel.loadMuseums()
-    }
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_museum)
@@ -44,6 +42,12 @@ class MuseumActivity : AppCompatActivity() {
 
     //ui
     private fun setupUI() {
+        recyclerView = findViewById(R.id.recyclerView)
+        layoutError = findViewById(R.id.layoutError)
+        layoutEmpty = findViewById(R.id.layoutEmpty)
+        progressBar = findViewById(R.id.progressBar)
+        textViewError = findViewById(R.id.textViewError)
+
         adapter = MuseumAdapter(viewModel.museums.value ?: emptyList())
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
@@ -51,8 +55,6 @@ class MuseumActivity : AppCompatActivity() {
 
     //view model
     private fun setupViewModel() {
-        viewModel = ViewModelProviders.of(this, ViewModelFactory(Injection.providerRepository()))
-            .get(MuseumViewModel::class.java)
         viewModel.museums.observe(this, renderMuseums)
 
         viewModel.isViewLoading.observe(this, isViewLoadingObserver)
@@ -91,6 +93,11 @@ class MuseumActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.loadMuseums()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Injection.destroy()
     }
 
 }

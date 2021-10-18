@@ -1,6 +1,6 @@
-package com.emedinaa.kotlinmvvm.model
+package com.emedinaa.kotlinmvvm.data
 
-import com.emedinaa.kotlinmvvm.data.OperationResult
+import com.emedinaa.kotlinmvvm.model.Museum
 
 /**
  * @author Eduardo Medina
