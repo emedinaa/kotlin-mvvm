@@ -1,10 +1,13 @@
 package com.emedinaa.kotlinmvvm
 
-import com.emedinaa.kotlinmvvm.data.OperationResult
+import com.emedinaa.kotlinmvvm.message.OperationResult
 import com.emedinaa.kotlinmvvm.model.Museum
-import com.emedinaa.kotlinmvvm.model.MuseumDataSource
+import com.emedinaa.kotlinmvvm.model.MuseumRepository
 
-class FakeErrorMuseumRepository:MuseumDataSource {
+/**
+ * @author Eduardo Medina
+ */
+class FakeErrorMuseumRepository : MuseumRepository {
 
     private val mockException = Exception("Ocurrió un error")
 

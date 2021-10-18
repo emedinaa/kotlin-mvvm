@@ -1,6 +1,4 @@
-package com.emedinaa.kotlinmvvm.data
-
-import com.emedinaa.kotlinmvvm.model.Museum
+package com.emedinaa.kotlinmvvm.message
 
 /**
  * @author : Eduardo Medina
@@ -8,5 +6,5 @@ import com.emedinaa.kotlinmvvm.model.Museum
  */
 sealed class OperationResult<out T> {
     data class Success<T>(val data: List<T>?) : OperationResult<T>()
-    data class Error(val exception:Exception?) : OperationResult<Nothing>()
+    data class Error(val exception: Exception?) : OperationResult<Nothing>()
 }
