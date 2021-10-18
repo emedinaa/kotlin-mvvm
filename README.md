@@ -32,7 +32,13 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 Android MVVM Clean https://docs.google.com/presentation/d/1luTzvqGaMjVycEx109-AjYIj3FIpXYAt3Mnu-gjqxtc/edit?usp=sharing
 
-### Updates [August 2020]
+### Updates [October 2021]
+
+- Added rxjava library. [branch rx-kotlin](https://github.com/emedinaa/kotlin-mvvm/tree/rxkotlin)
+
+- Add navigation component library. [branch navigation-component](https://github.com/emedinaa/kotlin-mvvm/tree/navigation-component)
+
+- Added viewbinding support and  kotlin extensions were removed. [branch viewbinding](https://github.com/emedinaa/kotlin-mvvm/tree/viewbinding)
 
 - Added dependency injection with Hilt, included android tests [branch hilt](https://github.com/emedinaa/kotlin-mvvm/tree/hilt)
 
