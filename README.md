@@ -1,6 +1,6 @@
 # kotlin-mvvm + Coroutines + Flow
 
-Languages: [English](Readme.md), [Spanish](Readme.es.md)
+Languages: [English](README.md), [Spanish](README.es.md)
 
 [![Kotlin](https://img.shields.io/badge/kotlin-1.3.21-blue.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-3.3.2-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin) [![Mockito](https://img.shields.io/badge/mockito-2.27.0-orange.svg)](https://site.mockito.org/) [![Retrofit](https://img.shields.io/badge/retrofit-2.6.0-brightgreen)](https://square.github.io/retrofit/) [![Coroutines](https://img.shields.io/badge/coroutines-1.3.0-blueviolet)](https://kotlinlang.org/docs/reference/coroutines-overview.html) [![Coroutines-test](https://img.shields.io/badge/coroutines--test-1.3.0-yellow)](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test) [![OkHttp](https://img.shields.io/badge/okhttp-4.0.1-lightgrey)](https://square.github.io/okhttp/)
 
@@ -43,6 +43,6 @@ Unit tests :
 
 ### Contributing and reporting issues
 
-If you want to contribute in this repository, please send me a pull request or if you want to report some issues please send at https://github.com/emedinaa/mvvm-step-by-step/issues
+If you want to contribute in this repository, please send me a pull request or if you want to report some issues please send at https://github.com/emedinaa/kotlin-mvvm/issues
 
 I appreciate any question or comment. Also, if you consider it useful, you can give me a star ⭐ ⭐ ⭐.
