@@ -1,12 +1,24 @@
 package com.emedinaa.kotlinmvvm.di
 
-import com.emedinaa.kotlinmvvm.model.MuseumDataSource
+import com.emedinaa.kotlinmvvm.data.ApiClient
+import com.emedinaa.kotlinmvvm.data.MuseumRemoteDataSource
 import com.emedinaa.kotlinmvvm.model.MuseumRepository
 
+/**
+ * @author Eduardo Medina
+ */
 object Injection {
+    private var museumRepository: MuseumRepository? = null
 
-    //MuseumRepository could be a singleton
-    fun providerRepository():MuseumDataSource{
-        return MuseumRepository()
+    private fun createMuseumRepository(): MuseumRepository {
+        val dataSource = MuseumRemoteDataSource(ApiClient.build())
+        museumRepository = dataSource
+        return dataSource
+    }
+
+    fun providerRepository() = museumRepository ?: createMuseumRepository()
+
+    fun destroy() {
+        museumRepository = null
     }
 }

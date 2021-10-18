@@ -10,7 +10,11 @@ import com.bumptech.glide.Glide
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.model.Museum
 
-class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<MuseumAdapter.MViewHolder>(){
+/**
+ * @author Eduardo Medina
+ */
+class MuseumAdapter(private var museums: List<Museum>) :
+    RecyclerView.Adapter<MuseumAdapter.MViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -19,25 +23,23 @@ class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<Museu
     }
 
     override fun onBindViewHolder(vh: MViewHolder, position: Int) {
-        val museum= museums[position]
+        val museum = museums[position]
 
         //render
-        vh.textViewName.text= museum.name
+        vh.textViewName.text = museum.name
         Glide.with(vh.imageView.context).load(museum.photo).into(vh.imageView)
     }
 
-    override fun getItemCount(): Int {
-        return museums.size
-    }
+    override fun getItemCount(): Int = museums.size
 
-    fun update(data:List<Museum>){
-        museums= data
+    fun update(data: List<Museum>) {
+        museums = data
         notifyDataSetChanged()
     }
 
-    class MViewHolder(val view: View) : RecyclerView.ViewHolder(view){
+    class MViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val textViewName: TextView = view.findViewById(R.id.textViewName)
         val imageView: ImageView = view.findViewById(R.id.imageView)
-        val textViewLink:TextView= view.findViewById(R.id.textViewLink)
+        val textViewLink: TextView = view.findViewById(R.id.textViewLink)
     }
 }
