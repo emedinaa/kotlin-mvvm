@@ -30,7 +30,7 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
         repository.retrieveMuseums(object : OperationCallback<Museum> {
             override fun onError(error: String?) {
                 _isViewLoading.postValue(false)
-                _onMessageError.postValue(error)
+                _onMessageError.postValue(error ?: "Ocurrió un error")
             }
 
             override fun onSuccess(data: List<Museum>?) {

@@ -2,4 +2,6 @@
     <string name="app_name">KotlinMVVM</string>
     <string name="empty_list">No museums found!</string>
     <string name="an_error_occurred">An error occurred</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
