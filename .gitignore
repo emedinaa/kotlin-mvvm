@@ -112,5 +112,6 @@ lint/tmp/
 
 .DS_Store
 
+KotlinMVVM/.idea/
 KotlinMVVM/.idea/codeStyles/Project.xml
 KotlinMVVM/.idea/gradle.xml
