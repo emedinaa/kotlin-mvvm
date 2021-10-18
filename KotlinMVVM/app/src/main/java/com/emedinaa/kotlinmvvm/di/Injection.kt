@@ -1,6 +1,5 @@
 package com.emedinaa.kotlinmvvm.di
 
-import androidx.lifecycle.ViewModelProvider
 import com.emedinaa.kotlinmvvm.data.ApiClient
 import com.emedinaa.kotlinmvvm.data.MuseumRemoteDataSource
 import com.emedinaa.kotlinmvvm.model.MuseumDataSource
@@ -12,15 +11,36 @@ import com.emedinaa.kotlinmvvm.viewmodel.ViewModelFactory
  */
 object Injection {
 
-    private val museumDataSource: MuseumDataSource = MuseumRemoteDataSource(ApiClient)
-    private val museumRepository = MuseumRepository(museumDataSource)
-    private val museumViewModelFactory = ViewModelFactory(museumRepository)
+    private var museumDataSource: MuseumDataSource? = null
+    private var museumRepository: MuseumRepository? = null
+    private var museumViewModelFactory: ViewModelFactory? = null
 
-    fun providerRepository(): MuseumDataSource {
-        return museumDataSource
+    private fun createMuseumDataSource(): MuseumDataSource {
+        val dataSource = MuseumRemoteDataSource(ApiClient)
+        museumDataSource = dataSource
+        return dataSource
     }
 
-    fun provideViewModelFactory(): ViewModelProvider.Factory {
-        return museumViewModelFactory
+    private fun createMuseumRepository(): MuseumRepository {
+        val repository = MuseumRepository(provideDataSource())
+        museumRepository = repository
+        return repository
+    }
+
+    private fun createFactory(): ViewModelFactory {
+        val factory = ViewModelFactory(providerRepository())
+        museumViewModelFactory = factory
+        return factory
+    }
+
+    private fun provideDataSource() = museumDataSource ?: createMuseumDataSource()
+    private fun providerRepository() = museumRepository ?: createMuseumRepository()
+
+    fun provideViewModelFactory() = museumViewModelFactory ?: createFactory()
+
+    fun destroy() {
+        museumDataSource = null
+        museumRepository = null
+        museumViewModelFactory = null
     }
 }

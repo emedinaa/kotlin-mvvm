@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.model.Museum
-import kotlinx.android.synthetic.main.row_museum.view.*
 
 /**
  * @author Eduardo Medina
@@ -37,8 +36,8 @@ class MuseumAdapter(private var museums: List<Museum>) :
     }
 
     class MViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val textViewName: TextView = view.textViewName
-        private val imageView: ImageView = view.imageView
+        private val textViewName: TextView = view.findViewById(R.id.textViewName)
+        private val imageView: ImageView = view.findViewById(R.id.imageView)
         fun bind(museum: Museum) {
             textViewName.text = museum.name.capitalize()
             Glide.with(imageView.context).load(museum.photo).into(imageView)
