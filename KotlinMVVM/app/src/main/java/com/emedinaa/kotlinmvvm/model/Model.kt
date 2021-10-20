@@ -1,6 +1,7 @@
 package com.emedinaa.kotlinmvvm.model
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 /**
  * @author : Eduardo Medina
@@ -8,4 +9,5 @@ import java.io.Serializable
  * @see : https://developer.android.com/index.html
  */
 
-data class Museum(val id: Int, val name: String, val photo: String) : Serializable
+@Parcelize
+data class Museum(val id: Int, val name: String, val photo: String) : Parcelable

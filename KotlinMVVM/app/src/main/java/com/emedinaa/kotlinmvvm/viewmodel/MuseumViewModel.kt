@@ -22,8 +22,8 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
     private val _isViewLoading = MutableLiveData<Boolean>()
     val isViewLoading: LiveData<Boolean> = _isViewLoading
 
-    private val _onMessageError = MutableLiveData<Any>()
-    val onMessageError: LiveData<Any> = _onMessageError
+    private val _onMessageError = MutableLiveData<String>()
+    val onMessageError: LiveData<String> = _onMessageError
 
     private val _isEmptyList = MutableLiveData<Boolean>()
     val isEmptyList: LiveData<Boolean> = _isEmptyList
@@ -42,15 +42,14 @@ class MuseumViewModel(private val repository: MuseumRepository) : ViewModel() {
             _isViewLoading.value = false
             when (result) {
                 is OperationResult.Success -> {
-                    if (result.data.isNullOrEmpty()) {
+                    if (result.data.isEmpty()) {
                         _isEmptyList.value = true
                     } else {
                         _museums.value = result.data
                     }
                 }
                 is OperationResult.Error -> {
-                    _onMessageError.value = result.exception
-
+                    _onMessageError.value = result.exception?.message
                 }
             }
         }

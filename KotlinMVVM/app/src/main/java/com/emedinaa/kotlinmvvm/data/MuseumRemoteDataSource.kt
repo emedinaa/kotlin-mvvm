@@ -15,7 +15,7 @@ class MuseumRemoteDataSource(apiClient: ApiClient) : MuseumDataSource {
             val response = service?.museums()
             response?.let {
                 return if (it.isSuccessful && it.body() != null) {
-                    val data = it.body()?.data
+                    val data = it.body()?.data ?: emptyList()
                     OperationResult.Success(data)
                 } else {
                     val message = it.body()?.msg
@@ -24,8 +24,8 @@ class MuseumRemoteDataSource(apiClient: ApiClient) : MuseumDataSource {
             } ?: run {
                 return OperationResult.Error(Exception("Ocurrió un error"))
             }
-        } catch (e: Exception) {
-            return OperationResult.Error(e)
+        } catch (exception: Exception) {
+            return OperationResult.Error(exception)
         }
     }
 }

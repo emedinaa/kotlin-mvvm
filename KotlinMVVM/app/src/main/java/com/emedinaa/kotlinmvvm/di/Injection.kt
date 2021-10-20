@@ -9,8 +9,21 @@ import com.emedinaa.kotlinmvvm.model.MuseumRepository
  * @author Eduardo Medina
  */
 object Injection {
-    private val dataSource = MuseumRemoteDataSource(ApiClient)
-    private val museumRepository = MuseumRepository(dataSource)
+    private var dataSource: MuseumDataSource? = null
+    private var museumRepository: MuseumRepository? = null
 
-    fun providerRepository() = museumRepository
+    private fun createDataSource(): MuseumDataSource {
+        val newDataSource = MuseumRemoteDataSource(ApiClient)
+        dataSource = newDataSource
+        return newDataSource
+    }
+
+    private fun createMuseumRepository(): MuseumRepository {
+        val repository = MuseumRepository(provideDataSource())
+        museumRepository = repository
+        return repository
+    }
+
+    private fun provideDataSource() = dataSource ?: createDataSource()
+    fun providerRepository() = museumRepository ?: createMuseumRepository()
 }
