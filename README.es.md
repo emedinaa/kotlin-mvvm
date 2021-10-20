@@ -35,6 +35,8 @@ Android MVVM Clean https://docs.google.com/presentation/d/1luTzvqGaMjVycEx109-Aj
 
 ### Updates [Octubre 2021]
 
+- Se agregó jetpack compose. [compose](https://github.com/emedinaa/kotlin-mvvm/tree/compose)
+- 
 - Se agregó la biblioteca rxjava. [branch rx-kotlin](https://github.com/emedinaa/kotlin-mvvm/tree/rxkotlin)
 
 - Se agregó la biblioteca navigation component. [branch navigation-component](https://github.com/emedinaa/kotlin-mvvm/tree/navigation-component)
