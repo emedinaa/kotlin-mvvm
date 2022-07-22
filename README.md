@@ -1,7 +1,7 @@
 # kotlin-mvvm
 Languages: [English](README.md), [Spanish](README.es.md)
 
-[![Kotlin](https://img.shields.io/badge/kotlin-1.3.21-blue.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-3.3.2-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin) [![Mockito](https://img.shields.io/badge/mockito-2.27.0-orange.svg)](https://site.mockito.org/)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.4.30-blue.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-4.0.0-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin) [![Mockito](https://img.shields.io/badge/mockito-2.27.0-orange.svg)](https://site.mockito.org/)
 
 MVVM(Model View ViewModel) sample in Kotlin using the components ViewModel, LiveData, the libraries Retrofit, Glide and Mockito for testing.
 
@@ -32,7 +32,9 @@ Android MVVM https://docs.google.com/presentation/d/1nTwtU8OWYs_8Q3i_3hOPAWodDpD
 
 Android MVVM Clean https://docs.google.com/presentation/d/1luTzvqGaMjVycEx109-AjYIj3FIpXYAt3Mnu-gjqxtc/edit?usp=sharing
 
-### Updates [October 2021]
+### Updates [July 2022]
+
+- Added state flow. [branch State Flow](https://github.com/emedinaa/kotlin-mvvm/tree/state-flow)
 
 - Added jetpack compose. [branch compose](https://github.com/emedinaa/kotlin-mvvm/tree/compose)
 
@@ -69,12 +71,13 @@ Android MVVM Clean https://docs.google.com/presentation/d/1luTzvqGaMjVycEx109-Aj
 - OkHttp 3 [version: '3.4.1'](https://square.github.io/okhttp/)
 - Glide [version: '4.9.0'](https://github.com/bumptech/glide)
 - AndroidX [version: '1.2.0'](https://mvnrepository.com/artifact/androidx)
-- Arch Lifecycle [version: '2.2.0'](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+- Arch Lifecycle [version: '2.4.0'](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 - Mockito [version: '2.27.0'](https://site.mockito.org/)
-- Arch Testing [version: '2.1.0'](https://mvnrepository.com/artifact/android.arch.core/core-testing?repo=google)
+- Arch Testing [version: '2.4.0'](https://mvnrepository.com/artifact/android.arch.core/core-testing?repo=google)
 
 ### References
 
+- State Flow https://developer.android.com/kotlin/flow/stateflow-and-sharedflow
 - ViewModel https://developer.android.com/topic/libraries/architecture/viewmodel
 - LiveData https://developer.android.com/topic/libraries/architecture/livedata
 - Android Architecture Blueprints https://github.com/googlesamples/android-architecture
