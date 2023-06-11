@@ -32,8 +32,8 @@ class MuseumRemoteDataSource(apiClient: ApiClient) :
                     Exception("Ocurrió un error")
                 )
             }
-        } catch (e: Exception) {
-            return OperationResult.Error(e)
+        } catch (exception: Exception) {
+            return OperationResult.Error(exception)
         }
     }
 }
