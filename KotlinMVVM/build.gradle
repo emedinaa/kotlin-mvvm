@@ -17,7 +17,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        mavenCentral()
     }
 }
 
@@ -47,8 +47,8 @@ ext {
 
     gsonVersion='2.8.0'
     retrofit2='2.6.0'
-    gson='2.6.0'
-    okhttp3='4.0.1'
+    gson='2.8.0'
+    okhttp3='4.3.0'
     glideVersion='4.9.0'
 
     coroutinesVersion = '1.5.2'
