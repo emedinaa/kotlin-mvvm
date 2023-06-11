@@ -9,7 +9,7 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath 'com.android.tools.build:gradle:7.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -47,9 +47,9 @@ ext {
     archTestingVersion = '1.1.1'
 
     gsonVersion='2.8.0'
-    retrofit2='2.6.0'
+    retrofit2='2.8.0'
     gson='2.6.0'
-    okhttp3='4.0.1'
+    okhttp3='4.3.0'
     glideVersion='4.9.0'
 
     coroutinesVersion = '1.3.0'
