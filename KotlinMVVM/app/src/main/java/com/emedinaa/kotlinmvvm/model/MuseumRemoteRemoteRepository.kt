@@ -4,24 +4,23 @@ import com.emedinaa.kotlinmvvm.data.remote.ApiClient
 import com.emedinaa.kotlinmvvm.data.OperationResult
 import com.emedinaa.kotlinmvvm.data.remote.MuseumRemoteDataSource
 
-class MuseumRemoteRemoteRepository: MuseumRemoteDataSource {
-
-    override suspend fun retrieveMuseums():OperationResult<Museum> {
+class MuseumRemoteRemoteRepository : MuseumRemoteDataSource {
+    override suspend fun retrieveMuseums(): OperationResult<Museum> {
         try {
             val response = ApiClient.build()?.museums()
             response?.let {
-                return if(it.isSuccessful && it.body()!=null){
+                return if (it.isSuccessful && it.body() != null) {
                     val data = it.body()?.data
                     OperationResult.Success(data)
-                }else{
+                } else {
                     val message = it.body()?.msg
                     OperationResult.Error(Exception(message))
                 }
-            }?:run{
+            } ?: run {
                 return OperationResult.Error(Exception("Ocurrió un error"))
             }
-        }catch (e:Exception){
-            return OperationResult.Error(e)
+        } catch (exception: Exception) {
+            return OperationResult.Error(exception)
         }
     }
 

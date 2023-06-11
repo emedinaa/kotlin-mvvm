@@ -11,7 +11,8 @@ import com.emedinaa.kotlinmvvm.R
 import com.emedinaa.kotlinmvvm.model.Museum
 import kotlinx.android.synthetic.main.row_museum.view.*
 
-class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<MuseumAdapter.MViewHolder>(){
+class MuseumAdapter(private var museums: List<Museum>) :
+    RecyclerView.Adapter<MuseumAdapter.MViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -28,16 +29,16 @@ class MuseumAdapter(private var museums:List<Museum>):RecyclerView.Adapter<Museu
         return museums.size
     }
 
-    fun update(data:List<Museum>){
-        museums= data
+    fun update(data: List<Museum>) {
+        museums = data
         notifyDataSetChanged()
     }
 
-    class MViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        private val textViewName:TextView = view.textViewName
-        private val imageView:ImageView = view.imageView
+    class MViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val textViewName: TextView = view.textViewName
+        private val imageView: ImageView = view.imageView
 
-        fun bind(museum:Museum){
+        fun bind(museum: Museum) {
             textViewName.text = museum.name
             Glide.with(imageView.context).load(museum.photo).into(imageView)
         }

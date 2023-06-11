@@ -11,10 +11,10 @@ object Injection {
 
     private val museumRepository = MuseumRemoteRemoteRepository()
 
-    private lateinit var dbDataSource:DbDataSource
-    private lateinit var museumDbRepository:MuseumDbRepository
+    private lateinit var dbDataSource: DbDataSource
+    private lateinit var museumDbRepository: MuseumDbRepository
 
-    fun setup(context:Context){
+    fun setup(context: Context) {
         dbDataSource = MuseumDbDataSource(context)
         museumDbRepository = MuseumDbRepository(dbDataSource)
     }

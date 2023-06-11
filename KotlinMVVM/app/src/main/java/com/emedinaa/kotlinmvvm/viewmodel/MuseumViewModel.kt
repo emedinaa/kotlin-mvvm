@@ -13,22 +13,24 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MuseumViewModel(private val remoteRepository: MuseumRemoteDataSource,
-                      private val dbRepository:MuseumDbRepository):ViewModel() {
+class MuseumViewModel(
+    private val remoteRepository: MuseumRemoteDataSource,
+    private val dbRepository: MuseumDbRepository
+) : ViewModel() {
 
-    private val _isViewLoading=MutableLiveData<Boolean>()
-    val isViewLoading:LiveData<Boolean> = _isViewLoading
+    private val _isViewLoading = MutableLiveData<Boolean>()
+    val isViewLoading: LiveData<Boolean> = _isViewLoading
 
     val museums = dbRepository.getMuseums()
 
-    fun retrieveMuseums(){
+    fun retrieveMuseums() {
         _isViewLoading.postValue(true)
         viewModelScope.launch {
-            var  result:OperationResult<Museum> = withContext(Dispatchers.IO){
+            var result: OperationResult<Museum> = withContext(Dispatchers.IO) {
                 remoteRepository.retrieveMuseums()
             }
             _isViewLoading.postValue(false)
-            if(result is OperationResult.Success){
+            if (result is OperationResult.Success) {
                 withContext((Dispatchers.IO)) {
                     result.data?.let {
                         if (it.isNotEmpty()) dbRepository.sync(it)
@@ -38,7 +40,7 @@ class MuseumViewModel(private val remoteRepository: MuseumRemoteDataSource,
         }
     }
 
-    fun cancel(){
+    fun cancel() {
         viewModelScope.cancel()
     }
 }

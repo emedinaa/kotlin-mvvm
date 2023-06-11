@@ -21,7 +21,7 @@ class MuseumActivity : AppCompatActivity() {
     private lateinit var adapter: MuseumAdapter
 
     companion object {
-        const val TAG= "CONSOLE"
+        const val TAG = "CONSOLE"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,55 +32,59 @@ class MuseumActivity : AppCompatActivity() {
     }
 
     // region setup ui
-    private fun setupUI(){
-        adapter= MuseumAdapter(viewModel.museums.value?: emptyList())
-        recyclerView.layoutManager= LinearLayoutManager(this)
-        recyclerView.adapter= adapter
+    private fun setupUI() {
+        adapter = MuseumAdapter(viewModel.museums.value ?: emptyList())
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
     // endregion setup ui
 
     // region setup viewmodel
-    private fun setupViewModel(){
-        viewModel = ViewModelProviders.of(this,ViewModelFactory(Injection.providerRemoteRepository(),
-            Injection.providerDBRepository())).get(MuseumViewModel::class.java)
-        viewModel.museums.observe(this,renderMuseums)
+    private fun setupViewModel() {
+        viewModel = ViewModelProviders.of(
+            this, ViewModelFactory(
+                Injection.providerRemoteRepository(),
+                Injection.providerDBRepository()
+            )
+        ).get(MuseumViewModel::class.java)
+        viewModel.museums.observe(this, renderMuseums)
 
-        viewModel.isViewLoading.observe(this,isViewLoadingObserver)
+        viewModel.isViewLoading.observe(this, isViewLoadingObserver)
     }
     // endregion viewmodel
 
     //region observers
-    private val renderMuseums= Observer<List<Museum>> {
+    private val renderMuseums = Observer<List<Museum>> {
         Log.v(TAG, "data updated $it")
-        layoutError.visibility=View.GONE
-        layoutEmpty.visibility=View.GONE
+        layoutError.visibility = View.GONE
+        layoutEmpty.visibility = View.GONE
         adapter.update(it)
     }
 
-    private val isViewLoadingObserver= Observer<Boolean> {
+    private val isViewLoadingObserver = Observer<Boolean> {
         Log.v(TAG, "isViewLoading $it")
-        val visibility=if(it)View.VISIBLE else View.GONE
-        progressBar.visibility= visibility
+        val visibility = if (it) View.VISIBLE else View.GONE
+        progressBar.visibility = visibility
     }
 
-    private val onMessageErrorObserver= Observer<Any> {
+    private val onMessageErrorObserver = Observer<Any> {
         Log.v(TAG, "onMessageError $it")
-        layoutError.visibility=View.VISIBLE
-        layoutEmpty.visibility=View.GONE
-        textViewError.text= "Error $it"
+        layoutError.visibility = View.VISIBLE
+        layoutEmpty.visibility = View.GONE
+        textViewError.text = "Error $it"
     }
 
-    private val emptyListObserver= Observer<Boolean> {
+    private val emptyListObserver = Observer<Boolean> {
         Log.v(TAG, "emptyListObserver $it")
-        layoutEmpty.visibility=View.VISIBLE
-        layoutError.visibility=View.GONE
+        layoutEmpty.visibility = View.VISIBLE
+        layoutError.visibility = View.GONE
     }
     //endregion observers
 
-     //If you require updated data, you can call the method "loadMuseum" here
-     override fun onResume() {
+    //If you require updated data, you can call the method "loadMuseum" here
+    override fun onResume() {
         super.onResume()
         viewModel.retrieveMuseums()
-     }
+    }
 
 }

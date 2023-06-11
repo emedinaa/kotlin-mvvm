@@ -7,14 +7,16 @@ import com.emedinaa.kotlinmvvm.data.db.MuseumDTO
 import com.emedinaa.kotlinmvvm.data.db.MuseumDao
 import com.emedinaa.kotlinmvvm.data.db.MuseumDataBase
 
-class MuseumDbDataSource(context:Context):DbDataSource {
-    private lateinit var museumDao:MuseumDao
+class MuseumDbDataSource(context: Context) : DbDataSource {
+    private lateinit var museumDao: MuseumDao
+
     init {
         val db = MuseumDataBase.getInstance(context)
         db?.let {
             museumDao = it.museumDao()
         }
     }
+
     override fun museums(): LiveData<List<MuseumDTO>> {
         return museumDao.museums()
     }
